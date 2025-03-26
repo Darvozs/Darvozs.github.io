@@ -102,6 +102,64 @@
             display: block;
         }
 
+        /* Crossword Styling */
+        .crossword-section {
+            margin-top: 40px;
+        }
+
+        .crossword-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .clues {
+            margin-bottom: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto 20px;
+        }
+
+        td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: none;
+        }
+
+        .black {
+            background-color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .score {
+            font-size: 18px;
+        }
+
         /* Footer Styling */
         footer {
             background-color: #f0f0f0;
@@ -196,10 +254,115 @@
             Additionally, it addresses the growing obesity epidemic, providing valuable insights into its public health implications 
             and practical solutions for individuals and communities alike.
         </p>
-       <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;"><iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/zgmzq/vwnl/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe></div>
+        <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
+            <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" 
+                    src="https://online.fliphtml5.com/zgmzq/vwnl/" seamless="seamless" scrolling="no" 
+                    frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+        </div>
+
+        <!-- Crossword Section -->
+        <section class="crossword-section">
+            <h2>Crossword: Hindari Obesitas</h2>
+            <div class="clues">
+                <h3>Mendatar</h3>
+                <ul>
+                    <li>3. Cara makan untuk kesehatan (4 huruf)</li>
+                </ul>
+                <h3>Menurun</h3>
+                <ul>
+                    <li>1. Kondisi kelebihan lemak (5 huruf)</li>
+                </ul>
+            </div>
+            <table id="crossword">
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="0" data-across="3"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="1" data-across="3"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="2" data-across="3" data-down="1"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="3" data-across="3"></td>
+                    <td class="black"></td>
+                </tr>
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+            </table>
+            <button onclick="checkAnswers()">Cek Jawaban</button>
+            <div class="score" id="score">Skor: 0</div>
+        </section>
     </main>
     <footer>
         <p>© 2025 IPE-35. All rights reserved.</p>
     </footer>
+    <script>
+        const words = [
+            {
+                type: 'across',
+                number: 3,
+                row: 2,
+                col: 0,
+                length: 4,
+                answer: 'DIET',
+                clue: 'Cara makan untuk kesehatan',
+                message: 'Benar! Diet seimbang membantu mencegah obesitas.'
+            },
+            {
+                type: 'down',
+                number: 1,
+                row: 0,
+                col: 2,
+                length: 5,
+                answer: 'OBESE',
+                clue: 'Kondisi kelebihan lemak',
+                message: 'Benar! Menghindari obesitas penting untuk kesehatan jantung.'
+            }
+        ];
+
+        function checkAnswers() {
+            let score = 0;
+            words.forEach(word => {
+                let userAnswer = '';
+                if (word.type === 'across') {
+                    for (let i = 0; i < word.length; i++) {
+                        const input = document.querySelector(input[data-row="${word.row}"][data-col="${word.col + i}"]);
+                        userAnswer += input.value.toUpperCase();
+                    }
+                } else { // down
+                    for (let i = 0; i < word.length; i++) {
+                        const input = document.querySelector(input[data-row="${word.row + i}"][data-col="${word.col}"]);
+                        userAnswer += input.value.toUpperCase();
+                    }
+                }
+                if (userAnswer === word.answer) {
+                    score += 10;
+                    alert(word.message);
+                }
+            });
+            document.getElementById('score').textContent = Skor: ${score};
+        }
+    </script>
 </body>
 </html>
