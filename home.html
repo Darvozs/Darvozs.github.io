@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,12 +42,16 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: background-color 0.3s ease;
+            flex-wrap: wrap; /* Allow wrapping */
         }
 
         .buttons {
             display: flex;
             flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
             gap: 10px;
+            justify-content: center; /* Center buttons when wrapped */
+            flex-grow: 1; /* Allow buttons to take space */
+            min-width: 200px; /* Prevent excessive shrinking */
         }
 
         .button {
@@ -56,18 +59,19 @@
             font-weight: 700;
             background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
             color: white; /* Explicitly set text color */
-            padding: 14px 28px;
+            padding: 10px 20px; /* Adjusted padding */
             border-radius: 25px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 1.1em;
+            font-size: 1em; /* Adjusted font size */
             border: none; /* Ensure buttons don't have default borders */
             cursor: pointer; /* Indicate interactivity */
             text-decoration: none; /* Remove underline from links styled as buttons */
             display: inline-block; /* Proper alignment and padding */
             text-align: center; /* Center text within button */
+            flex-shrink: 0; /* Prevent buttons from shrinking too much */
         }
 
         .button:hover {
@@ -76,12 +80,24 @@
             background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
         }
 
+        .logo {
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center logo horizontally */
+            align-items: center; /* Center logo vertically */
+            margin-bottom: 10px; /* Add space below logo when wrapped */
+            width: 100%; /* Take full width initially */
+            max-width: 380px; /* Limit max width */
+            margin-left: auto; /* Push logo left */
+            margin-right: auto; /* Push logo right */
+             flex-shrink: 0; /* Prevent logo from shrinking excessively */
+        }
+
+
         .logo img {
-            width: 380px;
+            width: 100%; /* Make image responsive within its container */
             height: auto;
             cursor: pointer;
             transition: transform 0.3s;
-            max-width: 100%; /* Ensure logo scales down */
             display: block; /* Prevents potential extra space below image */
         }
 
@@ -113,10 +129,12 @@
             margin-bottom: 20px;
             color: #4CAF50; /* Green for headings */
             transition: color 0.3s ease;
+             text-align: center; /* Center main title */
         }
 
         h2 { /* Added transition for H2 */
              transition: color 0.3s ease;
+             margin-bottom: 15px; /* Space below h2 */
         }
 
         p {
@@ -161,87 +179,115 @@
             color: #4CAF50;
         }
 
+        .clues-container {
+             display: flex;
+             flex-wrap: wrap; /* Allow clues to wrap */
+             justify-content: space-around; /* Space out clue sections */
+             margin-bottom: 20px;
+             text-align: left;
+             gap: 20px; /* Add gap between clue sections */
+        }
+
         .clues {
-            margin-bottom: 20px;
-            text-align: left;
-            display: inline-block; /* Allows centering via parent */
-            max-width: 100%; /* Prevent overflow */
+            /* Removed inline-block, handled by flex container now */
+            max-width: 400px; /* Limit width of each clue section */
+            width: 100%; /* Allow shrinking */
         }
         .clues h3 {
             margin-bottom: 10px;
+            color: #2ecc71; /* Use accent green for clue titles */
         }
         .clues ul {
             list-style: none; /* Remove default bullets */
             padding-left: 0;
         }
          .clues li {
-            margin-bottom: 5px;
+            margin-bottom: 8px; /* Slightly more space between clues */
+            font-size: 0.95em; /* Slightly smaller font for clues */
+            line-height: 1.4;
         }
 
-        table {
+        table#crossword { /* More specific selector */
             border-collapse: collapse;
-            margin: 0 auto 20px; /* Center table */
+            margin: 20px auto; /* Center table and add vertical margin */
+            border: 2px solid #555; /* Add a subtle border around the grid */
         }
 
-        td {
-            width: 40px;
-            height: 40px;
+        #crossword td {
+            width: 35px;  /* Slightly smaller cells */
+            height: 35px; /* Slightly smaller cells */
             border: 1px solid #ccc;
             vertical-align: middle; /* Center content vertically */
+            position: relative; /* For positioning the clue number */
              transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        input[type="text"] { /* More specific selector */
+        #crossword sup { /* Style the clue numbers */
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 9px;
+            line-height: 1;
+            color: #555;
+        }
+
+        #crossword input[type="text"] { /* More specific selector */
             width: 100%;
             height: 100%;
             text-align: center;
-            font-size: 18px;
+            font-size: 16px; /* Adjusted size */
             font-family: 'Poppins', sans-serif; /* Use consistent font */
+            font-weight: 600; /* Bolder letters */
             text-transform: uppercase;
             border: none;
             padding: 0; /* Remove default padding */
             background-color: transparent; /* Inherit background initially */
-            color: inherit; /* Inherit text color */
-             transition: background-color 0.3s ease, color 0.3s ease;
+            color: #333; /* Default text color */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        input[type="text"]:focus {
+        #crossword input[type="text"]:focus {
             outline: 2px solid #4CAF50; /* Highlight on focus */
             outline-offset: -2px;
+            background-color: rgba(76, 175, 80, 0.1); /* Subtle bg on focus */
         }
 
 
-        .black {
+        #crossword .black {
             background-color: #333;
             border-color: #333; /* Match border */
         }
 
-        button { /* General button styling (affects Check Answer button too) */
+        /* General button styling (affects Check Answer button too) */
+        .crossword-section button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px; /* Slightly larger padding */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Roboto Condensed', sans-serif; /* Consistent font */
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            font-size: 1.1em; /* Slightly larger font */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px; /* Space above button */
         }
 
-        button:hover {
+        .crossword-section button:hover {
             background-color: #45a049;
+            transform: translateY(-2px); /* Add slight lift on hover */
         }
 
         .score {
             font-size: 18px;
-            margin-top: 15px; /* Add space above score */
+            margin-top: 20px; /* More space above score */
             font-weight: bold;
+            color: #4CAF50; /* Green score text */
         }
 
         /* Footer Styling */
         footer {
             background-color: #f0f0f0;
             text-align: center;
-            padding: 10px;
+            padding: 15px; /* Increased padding */
             /* position: fixed; - Removed fixed positioning for better scrolling */
             margin-top: 40px; /* Add space above footer */
             bottom: 0;
@@ -269,20 +315,23 @@
              box-shadow: 0 0 15px rgba(255,255,255,0.05); /* Lighter shadow */
         }
 
-        body.dark-mode h1, body.dark-mode h2 {
-            color: #2ecc71; /* Brighter green */
-             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
          body.dark-mode h1 {
-             color: #4CAF50; /* Keep H1 green in dark mode too, maybe slightly brighter */
+             color: #58D68D; /* Brighter green for H1 */
+             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
          }
           body.dark-mode h2 {
              color: #58D68D; /* Brighter green for H2 */
+             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
          }
-
+         body.dark-mode .clues h3 {
+             color: #2ecc71; /* Slightly different green for clue titles */
+         }
 
         body.dark-mode p {
             color: #bdc3c7; /* Light grey */
+        }
+        body.dark-mode .clues li {
+            color: #bdc3c7;
         }
 
         body.dark-mode .button {
@@ -297,7 +346,7 @@
              box-shadow: 0 8px 12px rgba(0,0,0,0.4); /* Darker hover shadow */
         }
 
-        /* Specific dark mode for non-gradient buttons if needed */
+        /* Specific dark mode for non-gradient buttons */
          body.dark-mode #dark-mode-toggle,
          body.dark-mode #crossword-button,
          body.dark-mode .crossword-section button {
@@ -317,30 +366,37 @@
             border-top-color: #444; /* Darker border */
         }
 
-        body.dark-mode .black {
+        body.dark-mode #crossword .black {
             background-color: #1a1a1a; /* Very dark grey/black */
              border-color: #1a1a1a;
         }
-        body.dark-mode td {
+        body.dark-mode #crossword td {
              border-color: #555; /* Darker grid lines */
         }
+        body.dark-mode #crossword sup {
+             color: #aaa; /* Lighter clue numbers */
+        }
 
-        body.dark-mode input[type="text"] {
+        body.dark-mode #crossword input[type="text"] {
             background-color: transparent; /* Keep transparent */
             color: #ecf0f1; /* Light text */
         }
-         body.dark-mode input[type="text"]:focus {
+         body.dark-mode #crossword input[type="text"]:focus {
              outline-color: #58D68D; /* Brighter green focus */
+             background-color: rgba(88, 214, 141, 0.15); /* Darker subtle bg */
          }
         body.dark-mode .fliphtml5-container-wrapper {
              border-color: #555; /* Darker border */
              background-color: #2a2c30; /* Match main background */
         }
+        body.dark-mode .score {
+             color: #58D68D; /* Brighter green score */
+        }
 
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            header {
+        @media (max-width: 920px) { /* Adjust breakpoint for header wrap */
+             header {
                 flex-direction: column;
                 align-items: center; /* Center items when stacked */
                 padding: 15px;
@@ -348,29 +404,19 @@
             .logo {
                 order: -1; /* Move logo above buttons */
                 margin-bottom: 15px; /* Space below logo */
-                width: 100%; /* Allow logo to take full width if needed */
-                text-align: center; /* Center logo image */
+                width: auto; /* Allow natural width based on max-width */
+                max-width: 300px; /* Limit logo size */
+                margin-left: auto;
+                margin-right: auto; /* Center logo */
             }
-            .logo img {
-                 max-width: 300px; /* Limit logo size */
-                 width: 80%; /* Relative width */
-                 margin: 0 auto; /* Center image if block */
-            }
-
-
-            .buttons {
-                flex-direction: column;
+             .buttons {
+                justify-content: center; /* Ensure buttons stay centered */
                 width: 100%;
-                gap: 8px;
-            }
+             }
+        }
 
-            .button {
-                width: 100%;
-                text-align: center;
-                padding: 12px;
-                font-size: 1em; /* Adjust font size */
-            }
 
+        @media (max-width: 768px) {
             main {
                 margin: 15px;
                 padding: 15px;
@@ -388,44 +434,61 @@
              .fliphtml5-container-wrapper {
                  padding-top: 75%; /* Example: Adjust for 4:3 aspect ratio on tablets */
              }
-             /* You might need more specific breakpoints if 60% still works well on tablets */
 
-            td { /* Smaller crossword cells */
-                 width: 35px;
-                 height: 35px;
+             #crossword td { /* Smaller crossword cells */
+                 width: 30px;
+                 height: 30px;
             }
-             input[type="text"] {
-                 font-size: 16px;
+             #crossword input[type="text"] {
+                 font-size: 14px;
+             }
+             #crossword sup {
+                 font-size: 8px;
+             }
+             .clues-container {
+                 flex-direction: column; /* Stack clues vertically */
+                 align-items: center; /* Center stacked clues */
+             }
+             .clues {
+                 max-width: 90%; /* Allow clues to take more width when stacked */
              }
         }
 
         @media (max-width: 480px) {
+             body {
+                 line-height: 1.5; /* Adjust line height for small screens */
+             }
             h1 {
                 font-size: 1.8em;
             }
 
             .button {
                 font-size: 0.9em;
-                 padding: 10px 20px; /* Slightly smaller padding */
+                 padding: 10px 15px; /* Slightly smaller padding */
             }
 
              /* Adjust PDF embed height for phones */
              .fliphtml5-container-wrapper {
                  padding-top: 100%; /* Example: Adjust for taller aspect ratio on phones */
-                 /* Or keep a fixed height if preferred on small screens */
-                 /* height: 400px; padding-top: 0; */
              }
 
-            td { /* Even smaller crossword cells */
-                 width: 30px;
-                 height: 30px;
+            #crossword td { /* Even smaller crossword cells */
+                 width: 26px;
+                 height: 26px;
             }
-             input[type="text"] {
-                 font-size: 14px;
+             #crossword input[type="text"] {
+                 font-size: 12px;
+             }
+             #crossword sup {
+                 font-size: 7px;
              }
             .clues {
                  font-size: 0.9em; /* Smaller clue text */
             }
+             .crossword-section button {
+                 padding: 10px 20px;
+                 font-size: 1em;
+             }
 
         }
 
@@ -443,10 +506,9 @@
 </head>
 <body>
     <header>
-        <!-- Buttons moved below logo in HTML structure for potential semantic flow,
-             CSS `order` handles visual layout on mobile -->
         <div class="logo">
             <a href="https://pkmbhaktijaya.depok.go.id" target="_blank">
+                <!-- Make sure logo.png exists in the same directory or provide the correct path -->
                 <img src="logo.png" alt="UPTD Puskesmas Baktijaya Logo - Green hexagon with cross and purple text">
             </a>
         </div>
@@ -454,7 +516,6 @@
             <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" class="button" target="_blank">BMI Calculator</a>
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
-            <!-- Tombol Dark Mode -->
             <button id="dark-mode-toggle" class="button">Dark Mode</button>
             <button id="crossword-button" class="button">Crossword</button>
         </div>
@@ -467,7 +528,7 @@
         </p>
         <!-- Container Wrapper for the iframe -->
         <div class="fliphtml5-container-wrapper">
-            <iframe src="https://online.fliphtml5.com/zgmzq/vita/index.html"  <!-- CORRECTED URL -->
+            <iframe src="https://online.fliphtml5.com/zgmzq/vita/index.html"
                     seamless="seamless"
                     scrolling="no"
                     frameborder="0"
@@ -475,60 +536,194 @@
                     allowfullscreen="true">
             </iframe>
         </div>
-        <!-- The extra </div> that was here has been removed -->
     </main>
 
     <main class="content-page">
         <section class="crossword-section">
-            <h2>Crossword: Hindari Obesitas</h2>
-            <div class="clues">
-                <h3>Mendatar</h3>
-                <ul>
-                    <li>3. Cara makan untuk kesehatan (4 huruf)</li>
-                </ul>
-                <h3>Menurun</h3>
-                <ul>
-                    <li>1. Kondisi kelebihan lemak (5 huruf)</li>
-                </ul>
+            <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
+             <!-- Clues Container -->
+             <div class="clues-container">
+                 <div class="clues">
+                     <h3>Mendatar</h3>
+                     <ul>
+                         <li>1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
+                         <li>2 Rasio lingkar pinggang dan tinggi badan.</li>
+                         <li>5 Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
+                         <li>7 Pada saat apa tubuh memberikan sinyal untuk berhenti makan.</li>
+                         <li>8 Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
+                     </ul>
+                 </div>
+                 <div class="clues">
+                     <h3>Menurun</h3>
+                     <ul>
+                         <li>1 Contoh aktivitas fisik dengan level rendah.</li>
+                         <li>3 Penyakit akibat tekanan darah tinggi.</li>
+                         <li>4 Nama lemak sehat yang membantu manajemen berat badan.</li>
+                         <li>5 Dampak obesitas pada mental.</li>
+                         <li>6 Contoh aktivitas fisik dengan level tinggi.</li>
+                     </ul>
+                 </div>
             </div>
-            <table id="crossword">
-                 <!-- Crossword Grid Structure -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="0" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="1" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="0" data-across="3"></td>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="1" data-across="3"></td>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="2" data-across="3" data-down="1"></td>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="3" data-across="3"></td>
-                    <td class="black"></td>
-                </tr>
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-            </table>
+
+            <!-- Updated Crossword Grid -->
+             <table id="crossword">
+                 <!-- Row 0 -->
+                 <tr>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><sup>2</sup><input type="text" maxlength="1" value="W" data-row="0" data-col="6" data-across="2"></td>
+                     <td><sup>3</sup><input type="text" maxlength="1" value="H" data-row="0" data-col="7" data-across="2" data-down="3"></td>
+                     <td><input type="text" maxlength="1" value="T" data-row="0" data-col="8" data-across="2"></td>
+                     <td><input type="text" maxlength="1" value="R" data-row="0" data-col="9" data-across="2"></td>
+                 </tr>
+                 <!-- Row 1 -->
+                 <tr>
+                     <td class="black"></td>
+                     <td><sup>1</sup><input type="text" maxlength="1" value="B" data-row="1" data-col="1" data-across="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" value="U" data-row="1" data-col="2" data-across="1"></td>
+                     <td><input type="text" maxlength="1" value="G" data-row="1" data-col="3" data-across="1"></td>
+                     <td><input type="text" maxlength="1" value="A" data-row="1" data-col="4" data-across="1"></td>
+                     <td><input type="text" maxlength="1" value="R" data-row="1" data-col="5" data-across="1"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="I" data-row="1" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                 </tr>
+                 <!-- Row 2 -->
+                 <tr>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="E" data-row="2" data-col="1" data-down="1"></td>
+                     <td class="black"></td>
+                     <td><sup>4</sup><input type="text" maxlength="1" value="O" data-row="2" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="P" data-row="2" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                 </tr>
+                  <!-- Row 3 -->
+                 <tr>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="R" data-row="3" data-col="1" data-down="1"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="M" data-row="3" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="E" data-row="3" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                 </tr>
+                  <!-- Row 4 -->
+                 <tr>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="J" data-row="4" data-col="1" data-down="1"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="G" data-row="4" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="R" data-row="4" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+                  <!-- Row 5 -->
+                  <tr>
+                     <td><sup>5</sup><input type="text" maxlength="1" value="D" data-row="5" data-col="0" data-across="5" data-down="5"></td>
+                     <td><input type="text" maxlength="1" value="I" data-row="5" data-col="1" data-across="5" data-down="1"></td>
+                     <td><input type="text" maxlength="1" value="A" data-row="5" data-col="2" data-across="5"></td>
+                     <td><input type="text" maxlength="1" value="B" data-row="5" data-col="3" data-across="5" data-down="4"></td>
+                     <td><input type="text" maxlength="1" value="E" data-row="5" data-col="4" data-across="5"></td>
+                     <td><sup>6</sup><input type="text" maxlength="1" value="T" data-row="5" data-col="5" data-across="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" value="E" data-row="5" data-col="6" data-across="5"></td>
+                     <td><input type="text" maxlength="1" value="S" data-row="5" data-col="7" data-across="5" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                 </tr>
+                  <!-- Row 6 -->
+                  <tr>
+                     <td><input type="text" maxlength="1" value="E" data-row="6" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" value="A" data-row="6" data-col="1" data-down="1"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="A" data-row="6" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="P" data-row="6" data-col="5" data-down="6"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="T" data-row="6" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+                  <!-- Row 7 -->
+                  <tr>
+                     <td><input type="text" maxlength="1" value="P" data-row="7" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="1" data-down="1"></td>
+                     <td class="black"></td>
+                     <td><sup>7</sup><input type="text" maxlength="1" value="K" data-row="7" data-col="3" data-across="7"></td>
+                     <td><input type="text" maxlength="1" value="E" data-row="7" data-col="4" data-across="7"></td>
+                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="5" data-across="7" data-down="6"></td>
+                     <td><input type="text" maxlength="1" value="Y" data-row="7" data-col="6" data-across="7"></td>
+                     <td><input type="text" maxlength="1" value="A" data-row="7" data-col="7" data-across="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="8" data-across="7"></td>
+                     <td><input type="text" maxlength="1" value="G" data-row="7" data-col="9" data-across="7"></td>
+                  </tr>
+                  <!-- Row 8 -->
+                  <tr>
+                     <td><input type="text" maxlength="1" value="R" data-row="8" data-col="0" data-down="5"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><sup>8</sup><input type="text" maxlength="1" value="B" data-row="8" data-col="5" data-across="8" data-down="6"></td>
+                     <td><input type="text" maxlength="1" value="M" data-row="8" data-col="6" data-across="8"></td>
+                     <td><input type="text" maxlength="1" value="I" data-row="8" data-col="7" data-across="8" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+                  <!-- Row 9 -->
+                  <tr>
+                     <td><input type="text" maxlength="1" value="E" data-row="9" data-col="0" data-down="5"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="T" data-row="9" data-col="5" data-down="6"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="S" data-row="9" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+                   <!-- Row 10 -->
+                   <tr>
+                     <td><input type="text" maxlength="1" value="S" data-row="10" data-col="0" data-down="5"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" value="I" data-row="10" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+                  <!-- Row 11 -->
+                  <tr>
+                     <td><input type="text" maxlength="1" value="I" data-row="11" data-col="0" data-down="5"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                     <td class="black"></td>
+                  </tr>
+             </table>
             <button onclick="checkAnswers()">Cek Jawaban</button>
             <div class="score" id="score">Skor: 0</div>
         </section>
@@ -580,113 +775,194 @@
              window.scrollTo(0, 0);
         });
 
-        // Crossword Logic
+        // Updated Crossword Logic
         const words = [
+            // Mendatar (Across)
             {
-                type: 'across',
-                number: 3,
-                row: 2,
-                col: 0,
-                length: 4,
-                answer: 'DIET',
-                clue: 'Cara makan untuk kesehatan',
-                message: 'Benar! Diet seimbang membantu mencegah obesitas.'
+                type: 'across', number: 1, row: 1, col: 1, length: 5, answer: 'BUGAR',
+                clue: '1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.'
             },
             {
-                type: 'down',
-                number: 1,
-                row: 0,
-                col: 2,
-                length: 5,
-                answer: 'OBESE', // Changed from OBESITAS to fit grid
-                clue: 'Kondisi kelebihan lemak',
-                message: 'Benar! Menghindari obesitas penting untuk kesehatan.' // Simplified message
-            }
+                type: 'across', number: 2, row: 0, col: 6, length: 4, answer: 'WHTR',
+                clue: '2 Rasio lingkar pinggang dan tinggi badan.'
+            },
+            {
+                type: 'across', number: 5, row: 5, col: 0, length: 8, answer: 'DIABETES',
+                clue: '5 Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.'
+            },
+            {
+                type: 'across', number: 7, row: 7, col: 3, length: 7, answer: 'KENYANG',
+                clue: '7 Pada saat apa tubuh memberikan sinyal untuk berhenti makan.'
+            },
+            {
+                type: 'across', number: 8, row: 8, col: 5, length: 3, answer: 'BMI',
+                clue: '8 Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.'
+            },
+            // Menurun (Down)
+            {
+                type: 'down', number: 1, row: 1, col: 1, length: 8, answer: 'BERJALAN', // Corrected based on grid
+                clue: '1 Contoh aktivitas fisik dengan level rendah.'
+            },
+             {
+                type: 'down', number: 3, row: 0, col: 7, length: 11, answer: 'HIPERTENSI',
+                clue: '3 Penyakit akibat tekanan darah tinggi.'
+             },
+             {
+                type: 'down', number: 4, row: 2, col: 3, length: 5, answer: 'OMEGA',
+                clue: '4 Nama lemak sehat yang membantu manajemen berat badan.'
+             },
+             {
+                type: 'down', number: 5, row: 5, col: 0, length: 7, answer: 'DEPRESI',
+                clue: '5 Dampak obesitas pada mental.'
+             },
+             {
+                type: 'down', number: 6, row: 5, col: 5, length: 6, answer: 'SPRINT',
+                clue: '6 Contoh aktivitas fisik dengan level tinggi.'
+             }
         ];
+
 
         // Add event listeners for input navigation (optional but good UX)
         const inputs = document.querySelectorAll('#crossword input[type="text"]');
         inputs.forEach(input => {
             input.addEventListener('input', (e) => {
-                // Auto-focus next input in the same word direction if possible
-                // This requires more complex logic based on data attributes (data-across, data-down)
-                // For simplicity, just focus next input regardless of direction for now
-                const nextInput = input.closest('td').nextElementSibling?.querySelector('input') ||
-                                  input.closest('tr').nextElementSibling?.querySelector(`td:nth-child(${input.closest('td').cellIndex + 1}) input`);
-                if (e.target.value.length === 1 && nextInput && !nextInput.closest('td').classList.contains('black')) {
-                   // Basic next input focus - might need refinement for down/across logic
-                   // nextInput.focus();
+                const { row, col } = e.target.dataset;
+                const value = e.target.value;
+
+                if (value.length === 1) {
+                    // Try to move right first (common for across words)
+                    const nextCol = parseInt(col) + 1;
+                    let nextInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${nextCol}"]`);
+
+                    // If no input to the right, try to move down (common for down words starting)
+                    if (!nextInput || nextInput.closest('td').classList.contains('black')) {
+                         const nextRow = parseInt(row) + 1;
+                         nextInput = document.querySelector(`#crossword input[data-row="${nextRow}"][data-col="${col}"]`);
+                    }
+
+                    if (nextInput && !nextInput.closest('td').classList.contains('black')) {
+                        nextInput.focus();
+                        nextInput.select(); // Select text for easy overwrite
+                    }
                 }
             });
-             input.addEventListener('keydown', (e) => {
-                 // Basic arrow key navigation (example for right arrow)
-                 if (e.key === 'ArrowRight') {
-                     const nextCell = input.closest('td').nextElementSibling;
-                     if (nextCell && !nextCell.classList.contains('black')) {
-                         nextCell.querySelector('input')?.focus();
-                         e.preventDefault(); // Prevent cursor move inside input
+
+            input.addEventListener('keydown', (e) => {
+                 const { row, col } = e.target.dataset;
+                 let targetInput = null;
+
+                 switch (e.key) {
+                     case 'ArrowRight':
+                         targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) + 1}"]`);
+                         break;
+                     case 'ArrowLeft':
+                          targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`);
+                         break;
+                     case 'ArrowDown':
+                          targetInput = document.querySelector(`#crossword input[data-row="${parseInt(row) + 1}"][data-col="${col}"]`);
+                         break;
+                     case 'ArrowUp':
+                          targetInput = document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`);
+                         break;
+                     case 'Backspace':
+                         if (e.target.value === '') { // If already empty, move back
+                             targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`) || // Try left first
+                                          document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`); // Then try up
+                         }
+                         break;
+                 }
+
+                 if (targetInput && !targetInput.closest('td').classList.contains('black')) {
+                     targetInput.focus();
+                     targetInput.select();
+                     e.preventDefault(); // Prevent default arrow key behavior (scrolling)
+                 } else if (e.key === 'Backspace' && targetInput && targetInput.closest('td').classList.contains('black')){
+                    // If backspace target is black cell, try moving again
+                     e.preventDefault();
+                     const prevInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`) ||
+                                       document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`);
+                     if(prevInput && !prevInput.closest('td').classList.contains('black')) {
+                         prevInput.focus();
+                         prevInput.select();
                      }
                  }
-                 // Add similar logic for Left, Up, Down
-             });
+            });
         });
 
         function checkAnswers() {
-            let score = 0;
-            let allCorrect = true; // Flag to check if all answers are right
+            let currentScore = 0;
+            let totalWords = words.length;
+            let correctWords = 0;
 
             words.forEach(word => {
                 let userAnswer = '';
-                let correct = true; // Flag for this specific word
+                let isWordCorrect = true;
 
                 if (word.type === 'across') {
                     for (let i = 0; i < word.length; i++) {
-                        const input = document.querySelector(`input[data-row="${word.row}"][data-col="${word.col + i}"]`);
-                        if (input) {
+                        const input = document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`);
+                        if (input && !input.closest('td').classList.contains('black')) {
                             const char = input.value.toUpperCase();
                             userAnswer += char;
                             if (char !== word.answer[i]) {
-                                correct = false;
+                                isWordCorrect = false;
                             }
                         } else {
-                             correct = false; // Input not found
+                             isWordCorrect = false; // Input not found or is black cell
                              break;
                         }
                     }
                 } else { // down
                     for (let i = 0; i < word.length; i++) {
-                         const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
-                         if (input) {
+                         const input = document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`);
+                         if (input && !input.closest('td').classList.contains('black')) {
                              const char = input.value.toUpperCase();
                             userAnswer += char;
                             if (char !== word.answer[i]) {
-                                correct = false;
+                                isWordCorrect = false;
                             }
                          } else {
-                             correct = false; // Input not found
+                             isWordCorrect = false; // Input not found or is black cell
                              break;
                          }
                     }
                 }
 
-                if (userAnswer.length === word.length && userAnswer === word.answer) {
-                    score += 10;
-                    // Optionally provide feedback per word, or wait until the end
-                    console.log(`${word.answer}: Correct!`); // Log feedback instead of alert spam
+                // Check if the formed word matches the answer exactly
+                 if (isWordCorrect && userAnswer.length === word.length && userAnswer === word.answer) {
+                    correctWords++;
+                    // Optionally add visual feedback like changing border color of correct cells
+                    for (let i = 0; i < word.length; i++) {
+                       const cell = (word.type === 'across')
+                            ? document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`)?.closest('td')
+                            : document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`)?.closest('td');
+                       if (cell) cell.style.borderColor = 'lightgreen'; // Example feedback
+                    }
+
                 } else {
-                    allCorrect = false; // At least one word is wrong
+                    // Optionally reset border color if previously correct but now wrong
+                     for (let i = 0; i < word.length; i++) {
+                       const cell = (word.type === 'across')
+                            ? document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`)?.closest('td')
+                            : document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`)?.closest('td');
+                       // Reset to default or dark mode border color
+                       if (cell) cell.style.borderColor = body.classList.contains('dark-mode') ? '#555' : '#ccc';
+                    }
                 }
             });
 
-            document.getElementById('score').textContent = `Skor: ${score}`;
+            // Calculate score (e.g., 10 points per correct word)
+            currentScore = correctWords * 10;
+            document.getElementById('score').textContent = `Skor: ${currentScore}`;
 
-            if (allCorrect && score > 0) { // Check score > 0 in case there are no words defined
-                 alert('Selamat! Semua jawaban benar!');
-            } else if (score > 0) {
-                 alert('Beberapa jawaban benar. Coba lagi untuk menyempurnakan!');
+            // Provide feedback alert
+            if (correctWords === totalWords) {
+                 alert(`Selamat! Semua ${totalWords} jawaban benar! Skor Anda: ${currentScore}`);
+            } else if (correctWords > 0) {
+                 alert(`${correctWords} dari ${totalWords} jawaban benar. Coba lagi untuk menyempurnakan! Skor sementara: ${currentScore}`);
             }
              else {
-                 alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya!');
+                 alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya dan coba lagi!');
             }
         }
     </script>
