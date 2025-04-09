@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -581,7 +582,29 @@
         });
 
         // Crossword Logic
-       
+        const words = [
+            {
+                type: 'across',
+                number: 3,
+                row: 2,
+                col: 0,
+                length: 4,
+                answer: 'DIET',
+                clue: 'Cara makan untuk kesehatan',
+                message: 'Benar! Diet seimbang membantu mencegah obesitas.'
+            },
+            {
+                type: 'down',
+                number: 1,
+                row: 0,
+                col: 2,
+                length: 5,
+                answer: 'OBESE', // Changed from OBESITAS to fit grid
+                clue: 'Kondisi kelebihan lemak',
+                message: 'Benar! Menghindari obesitas penting untuk kesehatan.' // Simplified message
+            }
+        ];
+
         // Add event listeners for input navigation (optional but good UX)
         const inputs = document.querySelectorAll('#crossword input[type="text"]');
         inputs.forEach(input => {
@@ -668,7 +691,7 @@
             }
         }
     </script>
-  <!-- Crossword Section -->
+    <!-- Crossword Section -->
 <section class="crossword-section">
     <h2>Seberapa Sehat Gaya Hidupmu?</h2>
     <div class="clues">
@@ -901,29 +924,6 @@ const words = [
     }
 ];
 
-function checkAnswers() {
-    let score = 0;
-    words.forEach(word => {
-        let userAnswer = '';
-        if (word.type === 'across') {
-            for (let i = 0; i < word.length; i++) {
-                const input = document.querySelector(`input[data-row="${word.row}"][data-col="${word.col + i}"]`);
-                userAnswer += input.value.toUpperCase();
-            }
-        } else { // down
-            for (let i = 0; i < word.length; i++) {
-                const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
-                userAnswer += input.value.toUpperCase();
-            }
-        }
-        if (userAnswer === word.answer) {
-            score += 10;
-            alert(word.message);
-        }
-    });
-    document.getElementById('score').textContent = `Skor: ${score}`;
-}
-</script>
 function checkAnswers() {
     let score = 0;
     words.forEach(word => {
