@@ -3,88 +3,479 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buku Pintar BUGAR - Custom Crossword</title>
+    <title>Buku Pintar BUGAR</title>
     <style>
-         /* New font imports from Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
-         /* Updated global typography */
-    body {
-        font-family: 'Poppins', sans-serif;
-        color: #333;
-    }
+        /* New font imports from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
+        /* Updated global typography */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
 
-    h1, h2 {
-        font-family: 'Roboto Condensed', sans-serif;
-        color: #2c3e50;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    }
+        h1, h2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
         /* Basic CSS Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: linear-gradient(to bottom, #4CAF50, #6c5ce7); line-height: 1.6; transition: background 0.3s ease, color 0.3s ease; }
-        header { background-color: #f0f0f0; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: background-color 0.3s ease; flex-wrap: wrap; }
-        .buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; flex-grow: 1; min-width: 200px; }
-        .button { font-family: 'Roboto Condensed', sans-serif; font-weight: 700; background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%); color: white; padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-transform: uppercase; letter-spacing: 1px; font-size: 1em; border: none; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; flex-shrink: 0; }
-        .button:hover { transform: translateY(-3px); box-shadow: 0 8px 12px rgba(0,0,0,0.2); background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%); }
-        .logo { display: flex; justify-content: center; align-items: center; margin-bottom: 10px; width: 100%; max-width: 380px; margin-left: auto; margin-right: auto; flex-shrink: 0; }
-        .logo img { width: 100%; height: auto; cursor: pointer; transition: transform 0.3s; display: block; }
-        .logo img:hover { transform: scale(1.05); }
-        main { max-width: 900px; margin: 20px auto; padding: 20px; background-color: white; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; opacity: 0; animation: fadeIn 1s forwards; transition: background-color 0.3s ease, color 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        h1 { font-size: 2.5em; margin-bottom: 20px; color: #4CAF50; transition: color 0.3s ease; text-align: center; }
-        h2 { transition: color 0.3s ease; margin-bottom: 15px; }
-        p { font-size: 1.1em; color: #555; margin-bottom: 20px; transition: color 0.3s ease; }
-        .fliphtml5-container-wrapper { position: relative; padding-top: max(60%, 324px); width: 100%; height: 0; margin-top: 20px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; background-color: #eee; }
-        .fliphtml5-container-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .crossword-section { margin-top: 40px; text-align: center; }
-        .crossword-section h2 { font-size: 2em; margin-bottom: 20px; color: #4CAF50; }
-        .clues-container { display: flex; flex-wrap: wrap; justify-content: space-around; margin-bottom: 20px; text-align: left; gap: 20px; }
-        .clues { max-width: 400px; width: 100%; }
-        .clues h3 { margin-bottom: 10px; color: #2ecc71; }
-        .clues ul { list-style: none; padding-left: 0; }
-        .clues li { margin-bottom: 8px; font-size: 0.95em; line-height: 1.4; }
-        table#crossword { border-collapse: collapse; margin: 20px auto; border: 2px solid #555; }
-        #crossword td { width: 30px; height: 30px; border: 1px solid #ccc; vertical-align: middle; position: relative; transition: background-color 0.3s ease, border-color 0.3s ease; } /* Adjusted size slightly */
-        #crossword sup { position: absolute; top: 1px; left: 2px; font-size: 8px; line-height: 1; color: #555; pointer-events: none; } /* Adjusted size slightly */
-        #crossword input[type="text"] { width: 100%; height: 100%; text-align: center; font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 600; text-transform: uppercase; border: none; padding: 0; background-color: transparent; color: #333; transition: background-color 0.3s ease, color 0.3s ease; } /* Adjusted size slightly */
-        #crossword input[type="text"]:focus { outline: 2px solid #4CAF50; outline-offset: -2px; background-color: rgba(76, 175, 80, 0.1); }
-        #crossword .black { background-color: #333; border-color: #333; }
-        .crossword-section button { background-color: #4CAF50; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Roboto Condensed', sans-serif; font-size: 1.1em; transition: background-color 0.3s ease, transform 0.2s ease; margin-top: 10px; }
-        .crossword-section button:hover { background-color: #45a049; transform: translateY(-2px); }
-        .score { font-size: 18px; margin-top: 20px; font-weight: bold; color: #4CAF50; }
-        footer { background-color: #f0f0f0; text-align: center; padding: 15px; margin-top: 40px; bottom: 0; width: 100%; font-size: 0.9em; color: #777; border-top: 1px solid #ddd; transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease; }
-        /* Dark Mode Styles */
-        body.dark-mode { background: linear-gradient(to bottom, #2c3e50, #1a1a2e); color: #ecf0f1; }
-        body.dark-mode header { background-color: #1f2023; box-shadow: 0 2px 5px rgba(255,255,255,0.05); }
-        body.dark-mode main { background-color: #2a2c30; color: #ecf0f1; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
-        body.dark-mode h1, body.dark-mode h2 { color: #58D68D; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-        body.dark-mode .clues h3 { color: #2ecc71; }
-        body.dark-mode p, body.dark-mode .clues li { color: #bdc3c7; }
-        body.dark-mode .button { background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%); color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        body.dark-mode .button:hover { background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%); box-shadow: 0 8px 12px rgba(0,0,0,0.4); }
-        body.dark-mode #dark-mode-toggle, body.dark-mode #crossword-button, body.dark-mode .crossword-section button { background-color: #58D68D; color: #1f2023; }
-        body.dark-mode #dark-mode-toggle:hover, body.dark-mode #crossword-button:hover, body.dark-mode .crossword-section button:hover { background-color: #2ecc71; }
-        body.dark-mode footer { background-color: #1f2023; color: #bdc3c7; border-top-color: #444; }
-        body.dark-mode #crossword .black { background-color: #1a1a1a; border-color: #1a1a1a; }
-        body.dark-mode #crossword td { border-color: #555; }
-        body.dark-mode #crossword sup { color: #aaa; }
-        body.dark-mode #crossword input[type="text"] { background-color: transparent; color: #ecf0f1; }
-        body.dark-mode #crossword input[type="text"]:focus { outline-color: #58D68D; background-color: rgba(88, 214, 141, 0.15); }
-        body.dark-mode .fliphtml5-container-wrapper { border-color: #555; background-color: #2a2c30; }
-        body.dark-mode .score { color: #58D68D; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #4CAF50, #6c5ce7);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #f0f0f0;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .button {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
+        }
+
+        .logo img {
+            width: 380px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+            max-width: 100%;
+            display: block;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Content Styling */
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            transition: color 0.3s ease;
+        }
+
+        h2 {
+            transition: color 0.3s ease;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        /* PDF Container */
+        .fliphtml5-container-wrapper {
+            position: relative;
+            padding-top: max(60%, 324px);
+            width: 100%;
+            height: 0;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .fliphtml5-container-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Crossword Styling */
+        .crossword-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .crossword-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .clues-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            text-align: left;
+            gap: 20px;
+        }
+
+        .clues {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .clues h3 {
+            margin-bottom: 10px;
+            color: #2ecc71;
+        }
+
+        .clues ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .clues li {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        table#crossword {
+            border-collapse: collapse;
+            margin: 20px auto;
+            border: 2px solid #555;
+        }
+
+        #crossword td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            vertical-align: middle;
+            position: relative;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        #crossword sup {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 8px;
+            line-height: 1;
+            color: #555;
+            pointer-events: none;
+        }
+
+        #crossword input[type="text"] {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            padding: 0;
+            background-color: transparent;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #crossword input[type="text"]:focus {
+            outline: 2px solid #4CAF50;
+            outline-offset: -2px;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        #crossword .black {
+            background-color: #333;
+            border-color: #333;
+        }
+
+        .crossword-section button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .crossword-section button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .score {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid #ddd;
+            transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease;
+        }
+
+        /* Dark Mode Styling */
+        body.dark-mode {
+            background: linear-gradient(to bottom, #2c3e50, #1a1a2e);
+            color: #ecf0f1;
+        }
+
+        body.dark-mode header {
+            background-color: #1f2023;
+            box-shadow: 0 2px 5px rgba(255,255,255,0.05);
+        }
+
+        body.dark-mode main {
+            background-color: #2a2c30;
+            color: #ecf0f1;
+            box-shadow: 0 0 15px rgba(255,255,255,0.05);
+        }
+
+        body.dark-mode h1, body.dark-mode h2 {
+            color: #58D68D;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .clues h3 {
+            color: #2ecc71;
+        }
+
+        body.dark-mode p, body.dark-mode .clues li {
+            color: #bdc3c7;
+        }
+
+        body.dark-mode .button {
+            background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .button:hover {
+            background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode #dark-mode-toggle,
+        body.dark-mode #crossword-button,
+        body.dark-mode .crossword-section button {
+            background-color: #58D68D;
+            color: #1f2023;
+        }
+
+        body.dark-mode #dark-mode-toggle:hover,
+        body.dark-mode #crossword-button:hover,
+        body.dark-mode .crossword-section button:hover {
+            background-color: #2ecc71;
+        }
+
+        body.dark-mode footer {
+            background-color: #1f2023;
+            color: #bdc3c7;
+            border-top-color: #444;
+        }
+
+        body.dark-mode #crossword .black {
+            background-color: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+
+        body.dark-mode #crossword td {
+            border-color: #555;
+        }
+
+        body.dark-mode #crossword sup {
+            color: #aaa;
+        }
+
+        body.dark-mode #crossword input[type="text"] {
+            background-color: transparent;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode #crossword input[type="text"]:focus {
+            outline-color: #58D68D;
+            background-color: rgba(88, 214, 141, 0.15);
+        }
+
+        body.dark-mode .fliphtml5-container-wrapper {
+            border-color: #555;
+            background-color: #2a2c30;
+        }
+
+        body.dark-mode .score {
+            color: #58D68D;
+        }
+
         /* Responsive Design */
-        @media (max-width: 920px) { header { flex-direction: column; align-items: center; padding: 15px; } .logo { order: -1; margin-bottom: 15px; width: auto; max-width: 300px; margin-left: auto; margin-right: auto; } .buttons { justify-content: center; width: 100%; } }
-        @media (max-width: 768px) { main { margin: 15px; padding: 15px; } h1 { font-size: 2em; } p { font-size: 1em; } .fliphtml5-container-wrapper { padding-top: 75%; } #crossword td { width: 28px; height: 28px; } #crossword input[type="text"] { font-size: 12px; } #crossword sup { font-size: 7px; } .clues-container { flex-direction: column; align-items: center; } .clues { max-width: 90%; } } /* Adjusted cell size */
-        @media (max-width: 480px) { body { line-height: 1.5; } h1 { font-size: 1.8em; } .button { font-size: 0.9em; padding: 10px 15px; } .fliphtml5-container-wrapper { padding-top: 100%; } #crossword td { width: 24px; height: 24px; } #crossword input[type="text"] { font-size: 11px; } #crossword sup { font-size: 6px; } .clues { font-size: 0.9em; } .crossword-section button { padding: 10px 20px; font-size: 1em; } } /* Adjusted cell size */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+            .logo {
+                order: -1;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: center;
+            }
+            .logo img {
+                max-width: 300px;
+                width: 80%;
+                margin: 0 auto;
+            }
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 8px;
+            }
+            .button {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+                font-size: 1em;
+            }
+            main {
+                margin: 15px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .fliphtml5-container-wrapper {
+                padding-top: 75%;
+            }
+            #crossword td {
+                width: 28px;
+                height: 28px;
+            }
+            #crossword input[type="text"] {
+                font-size: 12px;
+            }
+            #crossword sup {
+                font-size: 7px;
+            }
+            .clues-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .clues {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .button {
+                font-size: 0.9em;
+                padding: 10px 20px;
+            }
+            .fliphtml5-container-wrapper {
+                padding-top: 100%;
+            }
+            #crossword td {
+                width: 24px;
+                height: 24px;
+            }
+            #crossword input[type="text"] {
+                font-size: 11px;
+            }
+            #crossword sup {
+                font-size: 6px;
+            }
+            .clues {
+                font-size: 0.9em;
+            }
+            .crossword-section button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+
         /* Page Navigation */
-        .content-page { display: none; }
-        .content-page.active { display: block; animation: fadeIn 0.5s forwards; }
+        .content-page {
+            display: none;
+        }
+
+        .content-page.active {
+            display: block;
+            animation: fadeIn 0.5s forwards;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
             <a href="https://pkmbhaktijaya.depok.go.id" target="_blank">
-                <img src="logo.png" alt="UPTD Puskesmas Baktijaya Logo">
+                <img src="logo.png" alt="UPTD Puskesmas Baktijaya Logo - Green hexagon with cross and purple text">
             </a>
         </div>
         <div class="buttons">
@@ -102,66 +493,225 @@
             Mau tahu lebih tentang obesitas dan cara menanggulanginya? Baca buku pintar berikut kalau penasaran.
         </p>
         <div class="fliphtml5-container-wrapper">
-            <iframe src="https://online.fliphtml5.com/zgmzq/vita/index.html" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+            <iframe src="https://online.fliphtml5.com/zgmzq/vita/index.html"
+                    seamless="seamless"
+                    scrolling="no"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allowfullscreen="true">
+            </iframe>
         </div>
     </main>
 
     <main class="content-page">
         <section class="crossword-section">
-            <h2>Crossword: Seberapa Sehat Gaya Hidupmu? (Custom Rules)</h2>
-             <div class="clues-container">
-                 <div class="clues">
-                     <h3>Mendatar</h3>
-                     <ul>
-                         <li>1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
-                         <li>2 Rasio lingkar pinggang dan tinggi badan.</li>
-                         <li>5 Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
-                         <li>7 Pada saat apa tubuh memberikan sinyal untuk berhenti makan.</li>
-                         <li>8 Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
-                     </ul>
-                 </div>
-                 <div class="clues">
-                     <h3>Menurun</h3>
-                     <ul>
-                         <li>1 Contoh aktivitas fisik dengan level rendah.</li>
-                         <li>3 Penyakit akibat tekanan darah tinggi.</li>
-                         <li>4 Nama lemak sehat yang membantu manajemen berat badan.</li>
-                         <li>5 Dampak obesitas pada mental.</li>
-                         <li>6 Contoh aktivitas fisik dengan level tinggi.</li>
-                     </ul>
-                 </div>
+            <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
+            <div class="clues-container">
+                <div class="clues">
+                    <h3>Mendatar</h3>
+                    <ul>
+                        <li>1. Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
+                        <li>2. Rasio lingkar pinggang dan tinggi badan.</li>
+                        <li>5. Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
+                        <li>7. Pada saat apa tubuh memberikan sinyal untuk berhenti makan.</li>
+                        <li>8. Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
+                    </ul>
+                </div>
+                <div class="clues">
+                    <h3>Menurun</h3>
+                    <ul>
+                        <li>1. Contoh aktivitas fisik dengan level rendah.</li>
+                        <li>3. Penyakit akibat tekanan darah tinggi.</li>
+                        <li>4. Nama lemak sehat yang membantu manajemen berat badan.</li>
+                        <li>5. Dampak obesitas pada mental.</li>
+                        <li>6. Contoh aktivitas fisik dengan level tinggi.</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- Grid built based *strictly* on the TEXT RULES provided (EMPTY) -->
             <table id="crossword">
-                 <!-- Row 0 -->
-                 <tr> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td><sup>2</sup><input type="text" maxlength="1" data-row="0" data-col="4" data-across="2"></td> <td><sup>3</sup><input type="text" maxlength="1" data-row="0" data-col="5" data-across="2" data-down="3"></td> <td><input type="text" maxlength="1" data-row="0" data-col="6" data-across="2"></td> <td><input type="text" maxlength="1" data-row="0" data-col="7" data-across="2"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 1 -->
-                 <tr> <td class="black"></td> <td class="black"></td> <td><sup>1</sup><input type="text" maxlength="1" data-row="1" data-col="2" data-across="1" data-down="1"></td> <td><input type="text" maxlength="1" data-row="1" data-col="3" data-across="1"></td> <td><input type="text" maxlength="1" data-row="1" data-col="4" data-across="1"></td> <td><input type="text" maxlength="1" data-row="1" data-col="5" data-across="1" data-down="3"></td> <td><input type="text" maxlength="1" data-row="1" data-col="6" data-across="1"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 2 -->
-                 <tr> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="2" data-col="2" data-down="1"></td> <td class="black"></td> <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td> <td><input type="text" maxlength="1" data-row="2" data-col="5" data-down="3"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 3 -->
-                 <tr> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td> <td><input type="text" maxlength="1" data-row="3" data-col="5" data-down="3"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 4 -->
-                 <tr> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="4" data-col="2" data-down="1"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="4" data-col="4" data-down="4"></td> <td><input type="text" maxlength="1" data-row="4" data-col="5" data-down="3"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 5 -->
-                 <tr> <td><sup>5</sup><input type="text" maxlength="1" data-row="5" data-col="0" data-across="5" data-down="5"></td> <td><input type="text" maxlength="1" data-row="5" data-col="1" data-across="5"></td> <td><input type="text" maxlength="1" data-row="5" data-col="2" data-across="5" data-down="1"></td> <td><input type="text" maxlength="1" data-row="5" data-col="3" data-across="5"></td> <td><input type="text" maxlength="1" data-row="5" data-col="4" data-across="5" data-down="4"></td> <td><input type="text" maxlength="1" data-row="5" data-col="5" data-across="5" data-down="3"></td> <td><input type="text" maxlength="1" data-row="5" data-col="6" data-across="5"></td> <td><sup>6</sup><input type="text" maxlength="1" data-row="5" data-col="7" data-across="5" data-down="6"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 6 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="6" data-col="2" data-down="1"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td> <td><input type="text" maxlength="1" data-row="6" data-col="5" data-down="3"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="6"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 7 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="7" data-col="2" data-down="1"></td> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="7" data-col="5" data-down="3"></td> <!-- Cell for KENYANG 6th 'N' conflict, visually empty --> <td class="black"></td> <td><input type="text" maxlength="1" data-row="7" data-col="7" data-down="6"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 8 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="8" data-col="2" data-down="1"></td> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="8" data-col="5" data-down="3"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="8" data-col="7" data-down="6"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 9 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td><sup>7</sup><input type="text" maxlength="1" data-row="9" data-col="4" data-across="7"></td> <td><input type="text" maxlength="1" data-row="9" data-col="5" data-across="7" data-down="3"></td> <td><input type="text" maxlength="1" data-row="9" data-col="6" data-across="7"></td> <td><input type="text" maxlength="1" data-row="9" data-col="7" data-across="7" data-down="6"></td> <td><input type="text" maxlength="1" data-row="9" data-col="8" data-across="7"></td> <td><sup>8</sup><input type="text" maxlength="1" data-row="9" data-col="9" data-across="7" data-across="8"></td> <td><input type="text" maxlength="1" data-row="9" data-col="10" data-across="7" data-across="8"></td> <td><input type="text" maxlength="1" data-row="9" data-col="11" data-across="7" data-across="8"></td> </tr> <!-- KENYANG placed here based on SPRINT rule -->
-                 <!-- Row 10 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td><input type="text" maxlength="1" data-row="10" data-col="7" data-down="6"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-                 <!-- Row 11 -->
-                 <tr> <td><input type="text" maxlength="1" data-row="11" data-col="0" data-down="5"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> <td class="black"></td> </tr>
-             </table>
+                <!-- Row 0 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>2</sup><input type="text" maxlength="1" data-row="0" data-col="4" data-across="2"></td>
+                    <td><sup>3</sup><input type="text" maxlength="1" data-row="0" data-col="5" data-across="2" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="6" data-across="2"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="7" data-across="2"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 1 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>1</sup><input type="text" maxlength="1" data-row="1" data-col="2" data-across="1" data-down="1"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="3" data-across="1"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="4" data-across="1"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="5" data-across="1" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="6" data-across="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="4" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                    <td><sup>5</sup><input type="text" maxlength="1" data-row="5" data-col="0" data-across="5" data-down="5"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="1" data-across="5"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="2" data-across="5" data-down="1"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="3" data-across="5"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="4" data-across="5" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="5" data-across="5" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="6" data-across="5"></td>
+                    <td><sup>6</sup><input type="text" maxlength="1" data-row="5" data-col="7" data-across="5" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 6 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 7 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 8 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="5" data-down="3"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td><sup>8</sup><input type="text" maxlength="1" data-row="8" data-col="9" data-across="8"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="10" data-across="8"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="11" data-across="8"></td>
+                </tr>
+                <!-- Row 9 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>7</sup><input type="text" maxlength="1" data-row="9" data-col="4" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="5" data-across="7" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="6" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="7" data-across="7" data-down="6"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="8" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="9" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="10" data-across="7"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 10 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="10" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 11 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="11" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+            </table>
             <button onclick="checkAnswers()">Cek Jawaban</button>
             <div class="score" id="score">Skor: 0</div>
-            <p style="margin-top: 15px; font-size: 0.9em; color: #777;"><i>Note: Grid built based on provided rules. Some rules conflicted, potentially causing visual misalignments (e.g., KENYANG). Answer checking uses the intended words.</i></p>
         </section>
     </main>
 
@@ -173,44 +723,81 @@
         // Dark Mode Toggle
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         const body = document.body;
-        if (localStorage.getItem('darkMode') === 'enabled') { body.classList.add('dark-mode'); darkModeToggle.textContent = 'Light Mode'; }
-        darkModeToggle.addEventListener('click', function() { body.classList.toggle('dark-mode'); const isDarkMode = body.classList.contains('dark-mode'); darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode'; localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled'); });
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = 'Light Mode';
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        });
 
         // Page Navigation
         const crosswordButton = document.getElementById('crossword-button');
         const pages = document.querySelectorAll('.content-page');
-        const homePage = pages[0]; const crosswordPage = pages[1];
-        crosswordButton.addEventListener('click', function() { const isCrosswordActive = crosswordPage.classList.contains('active'); if (isCrosswordActive) { crosswordPage.classList.remove('active'); homePage.classList.add('active'); crosswordButton.textContent = 'Crossword'; } else { homePage.classList.remove('active'); crosswordPage.classList.add('active'); crosswordButton.textContent = 'Back to Book'; } window.scrollTo(0, 0); });
+        const homePage = pages[0];
+        const crosswordPage = pages[1];
 
-        // JS Data based on the coordinates derived STRICTLY from TEXT RULES
-        const words = [
-             // Mendatar (Across)
-             { type: 'across', number: 1, row: 1, col: 2, length: 5, answer: 'BUGAR' },
-             { type: 'across', number: 2, row: 0, col: 4, length: 4, answer: 'WHTR' },
-             { type: 'across', number: 5, row: 5, col: 0, length: 8, answer: 'DIABETES' },
-             { type: 'across', number: 7, row: 9, col: 4, length: 7, answer: 'KENYANG' }, // Placed based on SPRINT intersection rule
-             { type: 'across', number: 8, row: 9, col: 9, length: 3, answer: 'BMI' }, // Aligned with conflicting KENYANG placement
-             // Menurun (Down)
-             { type: 'down', number: 1, row: 1, col: 2, length: 8, answer: 'BERJALAN' },
-             { type: 'down', number: 3, row: 0, col: 5, length: 10, answer: 'HIPERTENSI' },
-             { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
-             { type: 'down', number: 5, row: 5, col: 0, length: 7, answer: 'DEPRESI' },
-             { type: 'down', number: 6, row: 5, col: 7, length: 6, answer: 'SPRINT' }
-         ];
-
-        // Add full clues
-         const cluesList = { mendatar: ["1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.", "2 Rasio lingkar pinggang dan tinggi badan.", "5 Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.", "7 Pada saat apa tubuh memberikan sinyal untuk berhenti makan.", "8 Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan."], menurun: ["1 Contoh aktivitas fisik dengan level rendah.", "3 Penyakit akibat tekanan darah tinggi.", "4 Nama lemak sehat yang membantu manajemen berat badan.", "5 Dampak obesitas pada mental.", "6 Contoh aktivitas fisik dengan level tinggi."] };
-         words.forEach(word => { const clueNum = word.number; let clueText = `Clue ${word.number} ${word.type}`; const list = word.type === 'across' ? cluesList.mendatar : cluesList.menurun; const foundClue = list.find(c => c.startsWith(clueNum + " ")); if (foundClue) clueText = foundClue; word.clue = clueText; });
-
-        // Input navigation logic (remains the same)
-        const inputs = document.querySelectorAll('#crossword input[type="text"]');
-        inputs.forEach(input => {
-            input.addEventListener('input', (e) => { const { row, col } = e.target.dataset; if (e.target.value.length === 1) { const nextCol = parseInt(col) + 1; let nextInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${nextCol}"]`); if (!nextInput || nextInput.closest('td').classList.contains('black')) { const nextRow = parseInt(row) + 1; nextInput = document.querySelector(`#crossword input[data-row="${nextRow}"][data-col="${col}"]`); } if (nextInput && !nextInput.closest('td').classList.contains('black')) { nextInput.focus(); nextInput.select(); } } });
-            input.addEventListener('keydown', (e) => { const { row, col } = e.target.dataset; let targetInput = null; const currentRow = parseInt(row); const currentCol = parseInt(col); switch (e.key) { case 'ArrowRight': targetInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol + 1}"]`); break; case 'ArrowLeft': targetInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol - 1}"]`); break; case 'ArrowDown': targetInput = document.querySelector(`#crossword input[data-row="${currentRow + 1}"][data-col="${currentCol}"]`); break; case 'ArrowUp': targetInput = document.querySelector(`#crossword input[data-row="${currentRow - 1}"][data-col="${currentCol}"]`); break; case 'Backspace': if (e.target.value === '') { targetInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol - 1}"]`) || document.querySelector(`#crossword input[data-row="${currentRow - 1}"][data-col="${currentCol}"]`); } break; case 'Enter': e.preventDefault(); checkAnswers(); break; } if (targetInput && !targetInput.closest('td').classList.contains('black')) { targetInput.focus(); targetInput.select(); e.preventDefault(); } });
+        crosswordButton.addEventListener('click', function() {
+            const isCrosswordActive = crosswordPage.classList.contains('active');
+            if (isCrosswordActive) {
+                crosswordPage.classList.remove('active');
+                homePage.classList.add('active');
+                crosswordButton.textContent = 'Crossword';
+            } else {
+                homePage.classList.remove('active');
+                crosswordPage.classList.add('active');
+                crosswordButton.textContent = 'Back to Book';
+            }
+            window.scrollTo(0, 0);
         });
 
-        // Answer checking logic (remains the same)
-        function checkAnswers() { let currentScore = 0; let totalWords = words.length; let correctWords = 0; document.querySelectorAll('#crossword td:not(.black)').forEach(cell => { cell.style.borderColor = body.classList.contains('dark-mode') ? '#555' : '#ccc'; }); words.forEach(word => { let userAnswer = ''; let isWordCorrect = true; let cellsForThisWord = []; if (word.type === 'across') { for (let i = 0; i < word.length; i++) { const cellElement = document.querySelector(`#crossword td:has(input[data-row="${word.row}"][data-col="${word.col + i}"])`); const input = cellElement?.querySelector('input'); if (input && !cellElement.classList.contains('black')) { cellsForThisWord.push(cellElement); const char = input.value.toUpperCase(); userAnswer += char; if (char !== word.answer[i]) isWordCorrect = false; } else { isWordCorrect = false; break; } } } else { for (let i = 0; i < word.length; i++) { const cellElement = document.querySelector(`#crossword td:has(input[data-row="${word.row + i}"][data-col="${word.col}"])`); const input = cellElement?.querySelector('input'); if (input && !cellElement.classList.contains('black')) { cellsForThisWord.push(cellElement); const char = input.value.toUpperCase(); userAnswer += char; if (char !== word.answer[i]) isWordCorrect = false; } else { isWordCorrect = false; break; } } } if (isWordCorrect && userAnswer.length === word.length && userAnswer === word.answer) { correctWords++; cellsForThisWord.forEach(cell => { cell.style.borderColor = 'lightgreen'; }); } }); currentScore = correctWords * 10; document.getElementById('score').textContent = `Skor: ${currentScore}`; if (correctWords === totalWords) { alert(`Selamat! Semua ${totalWords} jawaban benar! Skor Anda: ${currentScore}`); } else if (correctWords > 0) { alert(`${correctWords} dari ${totalWords} jawaban benar. Coba lagi! Skor sementara: ${currentScore}`); } else { alert('Belum ada jawaban benar. Coba lagi!'); } }
+        // Crossword Logic
+        const words = [
+            { type: 'across', number: 1, row: 1, col: 2, length: 5, answer: 'BUGAR' },
+            { type: 'across', number: 2, row: 0, col: 4, length: 4, answer: 'WHTR' },
+            { type: 'across', number: 5, row: 5, col: 0, length: 8, answer: 'DIABETES' },
+            { type: 'across', number: 7, row: 9, col: 4, length: 7, answer: 'KENYANG' },
+            { type: 'across', number: 8, row: 8, col: 9, length: 3, answer: 'BMI' },
+            { type: 'down', number: 1, row: 1, col: 2, length: 8, answer: 'BERJALAN' },
+            { type: 'down', number: 3, row: 0, col: 5, length: 10, answer: 'HIPERTENSI' },
+            { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
+            { type: 'down', number: 5, row: 5, col: 0, length: 7, answer: 'DEPRESI' },
+            { type: 'down', number: 6, row: 5, col: 7, length: 6, answer: 'SPRINT' }
+        ];
+
+        function checkAnswers() {
+            let score = 0;
+            words.forEach(word => {
+                let userAnswer = '';
+                if (word.type === 'across') {
+                    for (let i = 0; i < word.length; i++) {
+                        const input = document.querySelector(`input[data-row="${word.row}"][data-col="${word.col + i}"]`);
+                        userAnswer += input ? input.value.toUpperCase() : '';
+                    }
+                } else {
+                    for (let i = 0; i < word.length; i++) {
+                        const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
+                        userAnswer += input ? input.value.toUpperCase() : '';
+                    }
+                }
+                if (userAnswer === word.answer) {
+                    score += 10;
+                }
+            });
+            document.getElementById('score').textContent = `Skor: ${score}`;
+            if (score === words.length * 10) {
+                alert('Selamat! Semua jawaban benar!');
+            } else if (score > 0) {
+                alert('Beberapa jawaban benar. Coba lagi untuk menyempurnakan!');
+            } else {
+                alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya!');
+            }
+        }
     </script>
 </body>
 </html>
