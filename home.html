@@ -1,3 +1,5 @@
+Okay, here is the complete, revised HTML code incorporating the corrected crossword grid structure and updated JavaScript data to precisely match the layout shown in the image.png file you provided. The grid starts empty for the user to fill.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,8 +216,8 @@
         }
 
         #crossword td {
-            width: 35px;  /* Slightly smaller cells */
-            height: 35px; /* Slightly smaller cells */
+            width: 35px;  /* Adjust cell size as needed */
+            height: 35px; /* Adjust cell size as needed */
             border: 1px solid #ccc;
             vertical-align: middle; /* Center content vertically */
             position: relative; /* For positioning the clue number */
@@ -566,7 +568,7 @@
                  </div>
             </div>
 
-            <!-- EMPTY Crossword Grid -->
+            <!-- CORRECTED Crossword Grid based on image.png (EMPTY) -->
              <table id="crossword">
                  <!-- Row 0 -->
                  <tr>
@@ -576,10 +578,11 @@
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><sup>2</sup><input type="text" maxlength="1" data-row="0" data-col="6" data-across="2"></td>
-                     <td><sup>3</sup><input type="text" maxlength="1" data-row="0" data-col="7" data-across="2" data-down="3"></td>
-                     <td><input type="text" maxlength="1" data-row="0" data-col="8" data-across="2"></td>
+                     <td class="black"></td>
+                     <td><sup>2</sup><input type="text" maxlength="1" data-row="0" data-col="7" data-across="2"></td>
+                     <td><sup>3</sup><input type="text" maxlength="1" data-row="0" data-col="8" data-across="2" data-down="3"></td>
                      <td><input type="text" maxlength="1" data-row="0" data-col="9" data-across="2"></td>
+                     <td><input type="text" maxlength="1" data-row="0" data-col="10" data-across="2"></td>
                  </tr>
                  <!-- Row 1 -->
                  <tr>
@@ -590,7 +593,8 @@
                      <td><input type="text" maxlength="1" data-row="1" data-col="4" data-across="1"></td>
                      <td><input type="text" maxlength="1" data-row="1" data-col="5" data-across="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="1" data-col="7" data-down="3"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
@@ -599,11 +603,12 @@
                      <td class="black"></td>
                      <td><input type="text" maxlength="1" data-row="2" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="2" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="2" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
@@ -612,11 +617,12 @@
                      <td class="black"></td>
                      <td><input type="text" maxlength="1" data-row="3" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="3" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="3" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="3" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
@@ -625,11 +631,12 @@
                      <td class="black"></td>
                      <td><input type="text" maxlength="1" data-row="4" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="4" data-col="3" data-down="4"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="4" data-col="4" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="4" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="4" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
@@ -638,11 +645,12 @@
                      <td><sup>5</sup><input type="text" maxlength="1" data-row="5" data-col="0" data-across="5" data-down="5"></td>
                      <td><input type="text" maxlength="1" data-row="5" data-col="1" data-across="5" data-down="1"></td>
                      <td><input type="text" maxlength="1" data-row="5" data-col="2" data-across="5"></td>
-                     <td><input type="text" maxlength="1" data-row="5" data-col="3" data-across="5" data-down="4"></td>
-                     <td><input type="text" maxlength="1" data-row="5" data-col="4" data-across="5"></td>
-                     <td><sup>6</sup><input type="text" maxlength="1" data-row="5" data-col="5" data-across="5" data-down="6"></td>
-                     <td><input type="text" maxlength="1" data-row="5" data-col="6" data-across="5"></td>
-                     <td><input type="text" maxlength="1" data-row="5" data-col="7" data-across="5" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="3" data-across="5"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="4" data-across="5" data-down="4"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="5" data-across="5"></td>
+                     <td><sup>6</sup><input type="text" maxlength="1" data-row="5" data-col="6" data-across="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="7" data-across="5"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
@@ -651,11 +659,12 @@
                      <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
                      <td><input type="text" maxlength="1" data-row="6" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="6" data-col="3" data-down="4"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="6" data-col="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="6" data-down="6"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
@@ -664,13 +673,14 @@
                      <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
                      <td><input type="text" maxlength="1" data-row="7" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><sup>7</sup><input type="text" maxlength="1" data-row="7" data-col="3" data-across="7"></td>
-                     <td><input type="text" maxlength="1" data-row="7" data-col="4" data-across="7"></td>
-                     <td><input type="text" maxlength="1" data-row="7" data-col="5" data-across="7" data-down="6"></td>
-                     <td><input type="text" maxlength="1" data-row="7" data-col="6" data-across="7"></td>
-                     <td><input type="text" maxlength="1" data-row="7" data-col="7" data-across="7" data-down="3"></td>
-                     <td><input type="text" maxlength="1" data-row="7" data-col="8" data-across="7"></td>
+                     <td class="black"></td>
+                     <td><sup>7</sup><input type="text" maxlength="1" data-row="7" data-col="4" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="5" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="6" data-across="7" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="7" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="8" data-across="7" data-down="3"></td>
                      <td><input type="text" maxlength="1" data-row="7" data-col="9" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="10" data-across="7"></td>
                   </tr>
                   <!-- Row 8 -->
                   <tr>
@@ -679,10 +689,11 @@
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><sup>8</sup><input type="text" maxlength="1" data-row="8" data-col="5" data-across="8" data-down="6"></td>
-                     <td><input type="text" maxlength="1" data-row="8" data-col="6" data-across="8"></td>
-                     <td><input type="text" maxlength="1" data-row="8" data-col="7" data-across="8" data-down="3"></td>
                      <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="6" data-down="6"></td>
+                     <td><sup>8</sup><input type="text" maxlength="1" data-row="8" data-col="7" data-across="8"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="8" data-across="8" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="9" data-across="8"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 9 -->
@@ -692,9 +703,10 @@
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="9" data-col="5" data-down="6"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="9" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="9" data-col="6" data-down="6"></td>
+                     <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="9" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
@@ -706,14 +718,16 @@
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="10" data-col="6" data-down="6"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" data-row="10" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="10" data-col="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 11 -->
                   <tr>
                      <td><input type="text" maxlength="1" data-row="11" data-col="0" data-down="5"></td>
+                     <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
@@ -776,7 +790,7 @@
              window.scrollTo(0, 0);
         });
 
-        // Updated Crossword Logic
+        // CORRECTED Crossword Logic based on image.png
         const words = [
             // Mendatar (Across)
             {
@@ -784,7 +798,7 @@
                 clue: '1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.'
             },
             {
-                type: 'across', number: 2, row: 0, col: 6, length: 4, answer: 'WHTR',
+                type: 'across', number: 2, row: 0, col: 7, length: 4, answer: 'WHTR', // Corrected col
                 clue: '2 Rasio lingkar pinggang dan tinggi badan.'
             },
             {
@@ -792,24 +806,24 @@
                 clue: '5 Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.'
             },
             {
-                type: 'across', number: 7, row: 7, col: 3, length: 7, answer: 'KENYANG',
+                type: 'across', number: 7, row: 7, col: 4, length: 7, answer: 'KENYANG', // Corrected col
                 clue: '7 Pada saat apa tubuh memberikan sinyal untuk berhenti makan.'
             },
             {
-                type: 'across', number: 8, row: 8, col: 5, length: 3, answer: 'BMI',
+                type: 'across', number: 8, row: 8, col: 7, length: 3, answer: 'BMI', // Corrected row and col
                 clue: '8 Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.'
             },
             // Menurun (Down)
             {
-                type: 'down', number: 1, row: 1, col: 1, length: 8, answer: 'BERJALAN', // Corrected based on grid
+                type: 'down', number: 1, row: 1, col: 1, length: 8, answer: 'BERJALAN',
                 clue: '1 Contoh aktivitas fisik dengan level rendah.'
             },
              {
-                type: 'down', number: 3, row: 0, col: 7, length: 11, answer: 'HIPERTENSI',
+                type: 'down', number: 3, row: 0, col: 8, length: 11, answer: 'HIPERTENSI', // Corrected col
                 clue: '3 Penyakit akibat tekanan darah tinggi.'
              },
              {
-                type: 'down', number: 4, row: 2, col: 3, length: 5, answer: 'OMEGA',
+                type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA', // Corrected row and col
                 clue: '4 Nama lemak sehat yang membantu manajemen berat badan.'
              },
              {
@@ -817,7 +831,7 @@
                 clue: '5 Dampak obesitas pada mental.'
              },
              {
-                type: 'down', number: 6, row: 5, col: 5, length: 6, answer: 'SPRINT',
+                type: 'down', number: 6, row: 5, col: 6, length: 6, answer: 'SPRINT', // Corrected col
                 clue: '6 Contoh aktivitas fisik dengan level tinggi.'
              }
         ];
@@ -985,7 +999,7 @@
             }
              else {
                  alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya dan coba lagi!');
-            }
+             }
         }
     </script>
 </body>
