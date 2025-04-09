@@ -26,12 +26,12 @@
         }
 
         body {
-    font-family: Arial, sans-serif;
-    /* Original gradient: background: linear-gradient(to bottom, #f0f9f0, #ffffff); */
-    background: linear-gradient(to bottom, #4CAF50, #6c5ce7); /* Green to purple gradient */
-    line-height: 1.6;
-    transition: all 0.3s ease;
-}
+            font-family: Arial, sans-serif;
+            /* Original gradient: background: linear-gradient(to bottom, #f0f9f0, #ffffff); */
+            background: linear-gradient(to bottom, #4CAF50, #6c5ce7); /* Green to purple gradient */
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease; /* Added transition for color too */
+        }
 
         /* Header Styling */
         header {
@@ -41,30 +41,38 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
 
         .buttons {
             display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
             gap: 10px;
         }
 
         .button {
             font-family: 'Roboto Condensed', sans-serif;
-        font-weight: 700;
-        background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
-        padding: 14px 28px;
-        border-radius: 25px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 1.1em;
-    }
+            font-weight: 700;
+            background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
+            color: white; /* Explicitly set text color */
+            padding: 14px 28px;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1em;
+            border: none; /* Ensure buttons don't have default borders */
+            cursor: pointer; /* Indicate interactivity */
+            text-decoration: none; /* Remove underline from links styled as buttons */
+            display: inline-block; /* Proper alignment and padding */
+            text-align: center; /* Center text within button */
+        }
 
         .button:hover {
             transform: translateY(-3px);
-        box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-        background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
         }
 
         .logo img {
@@ -72,6 +80,8 @@
             height: auto;
             cursor: pointer;
             transition: transform 0.3s;
+            max-width: 100%; /* Ensure logo scales down */
+            display: block; /* Prevents potential extra space below image */
         }
 
         .logo img:hover {
@@ -88,42 +98,60 @@
             border-radius: 8px;
             opacity: 0;
             animation: fadeIn 1s forwards;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        @keyframes pulse {
-        0% { opacity: 0; }
-        50% { opacity: 1; }
-        100% { opacity: 0; }
-    }
+        @keyframes fadeIn { /* Changed from pulse to a simple fade-in */
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
 
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             color: #4CAF50; /* Green for headings */
+            transition: color 0.3s ease;
+        }
+
+        h2 { /* Added transition for H2 */
+             transition: color 0.3s ease;
         }
 
         p {
             font-size: 1.1em;
             color: #555;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
-        .pdf-container {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
+        /* PDF Container - Using a wrapper for aspect ratio */
+        .fliphtml5-container-wrapper {
+             position: relative;
+             padding-top: max(60%, 324px); /* Adjust percentage as needed for aspect ratio */
+             width: 100%;
+             height: 0;
+             margin-top: 20px;
+             border: 1px solid #ddd; /* Optional border */
+             border-radius: 5px; /* Optional rounded corners */
+             overflow: hidden; /* Clip the iframe */
+             background-color: #eee; /* Optional placeholder color */
         }
 
-        .pdf-container embed {
-            width: 100%;
-            height: 600px;
-            display: block;
+        .fliphtml5-container-wrapper iframe {
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             border: none; /* Remove iframe border */
         }
+
 
         /* Crossword Styling */
         .crossword-section {
             margin-top: 40px;
+            text-align: center; /* Center the crossword elements */
         }
 
         .crossword-section h2 {
@@ -135,40 +163,67 @@
         .clues {
             margin-bottom: 20px;
             text-align: left;
-            display: inline-block;
+            display: inline-block; /* Allows centering via parent */
+            max-width: 100%; /* Prevent overflow */
+        }
+        .clues h3 {
+            margin-bottom: 10px;
+        }
+        .clues ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+         .clues li {
+            margin-bottom: 5px;
         }
 
         table {
             border-collapse: collapse;
-            margin: 0 auto 20px;
+            margin: 0 auto 20px; /* Center table */
         }
 
         td {
             width: 40px;
             height: 40px;
             border: 1px solid #ccc;
+            vertical-align: middle; /* Center content vertically */
+             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        input {
+        input[type="text"] { /* More specific selector */
             width: 100%;
             height: 100%;
             text-align: center;
             font-size: 18px;
+            font-family: 'Poppins', sans-serif; /* Use consistent font */
             text-transform: uppercase;
             border: none;
+            padding: 0; /* Remove default padding */
+            background-color: transparent; /* Inherit background initially */
+            color: inherit; /* Inherit text color */
+             transition: background-color 0.3s ease, color 0.3s ease;
         }
+        input[type="text"]:focus {
+            outline: 2px solid #4CAF50; /* Highlight on focus */
+            outline-offset: -2px;
+        }
+
 
         .black {
             background-color: #333;
+            border-color: #333; /* Match border */
         }
 
-        button {
+        button { /* General button styling (affects Check Answer button too) */
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-family: 'Roboto Condensed', sans-serif; /* Consistent font */
+            font-size: 1em;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
@@ -177,6 +232,8 @@
 
         .score {
             font-size: 18px;
+            margin-top: 15px; /* Add space above score */
+            font-weight: bold;
         }
 
         /* Footer Styling */
@@ -184,66 +241,121 @@
             background-color: #f0f0f0;
             text-align: center;
             padding: 10px;
-            position: fixed;
+            /* position: fixed; - Removed fixed positioning for better scrolling */
+            margin-top: 40px; /* Add space above footer */
             bottom: 0;
             width: 100%;
             font-size: 0.9em;
             color: #777;
             border-top: 1px solid #ddd;
+            transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease;
         }
 
         /* Dark Mode Styling */
         body.dark-mode {
-            background: linear-gradient(to bottom, #1a1a1a, #2a2a2a);
+            background: linear-gradient(to bottom, #2c3e50, #1a1a2e); /* Darker gradient */
             color: #ecf0f1;
         }
 
         body.dark-mode header {
-            background-color: #2a2a2a;
+            background-color: #1f2023; /* Darker header */
+            box-shadow: 0 2px 5px rgba(255,255,255,0.05); /* Lighter shadow */
         }
 
         body.dark-mode main {
-            background-color: #3a3a3a;
+            background-color: #2a2c30; /* Darker main */
             color: #ecf0f1;
+             box-shadow: 0 0 15px rgba(255,255,255,0.05); /* Lighter shadow */
         }
 
         body.dark-mode h1, body.dark-mode h2 {
-            color: #1abc9c;
+            color: #2ecc71; /* Brighter green */
+             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
+         body.dark-mode h1 {
+             color: #4CAF50; /* Keep H1 green in dark mode too, maybe slightly brighter */
+         }
+          body.dark-mode h2 {
+             color: #58D68D; /* Brighter green for H2 */
+         }
+
 
         body.dark-mode p {
-            color: #bdc3c7;
+            color: #bdc3c7; /* Light grey */
         }
 
         body.dark-mode .button {
-            background-color: #2980b9;
+            /* Keep the green gradient for contrast, maybe adjust slightly if needed */
+             background: linear-gradient(135deg, #4CAF50 0%, #2ecc71 100%);
+             color: white; /* Ensure text stays white */
+             box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Darker shadow */
         }
 
         body.dark-mode .button:hover {
-            background-color: #3498db;
+             background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
+             box-shadow: 0 8px 12px rgba(0,0,0,0.4); /* Darker hover shadow */
         }
 
+        /* Specific dark mode for non-gradient buttons if needed */
+         body.dark-mode #dark-mode-toggle,
+         body.dark-mode #crossword-button,
+         body.dark-mode .crossword-section button {
+             background-color: #58D68D; /* Brighter green */
+             color: #1f2023; /* Dark text */
+         }
+         body.dark-mode #dark-mode-toggle:hover,
+         body.dark-mode #crossword-button:hover,
+         body.dark-mode .crossword-section button:hover {
+             background-color: #2ecc71; /* Slightly darker green */
+         }
+
+
         body.dark-mode footer {
-            background-color: #2a2a2a;
-            color: #ecf0f1;
+            background-color: #1f2023; /* Darker footer */
+            color: #bdc3c7; /* Light grey */
+            border-top-color: #444; /* Darker border */
         }
 
         body.dark-mode .black {
-            background-color: #555;
+            background-color: #1a1a1a; /* Very dark grey/black */
+             border-color: #1a1a1a;
+        }
+        body.dark-mode td {
+             border-color: #555; /* Darker grid lines */
         }
 
-        body.dark-mode input {
-            background-color: #ecf0f1;
-            color: #333;
+        body.dark-mode input[type="text"] {
+            background-color: transparent; /* Keep transparent */
+            color: #ecf0f1; /* Light text */
         }
+         body.dark-mode input[type="text"]:focus {
+             outline-color: #58D68D; /* Brighter green focus */
+         }
+        body.dark-mode .fliphtml5-container-wrapper {
+             border-color: #555; /* Darker border */
+             background-color: #2a2c30; /* Match main background */
+        }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 10px;
+                align-items: center; /* Center items when stacked */
+                padding: 15px;
             }
+            .logo {
+                order: -1; /* Move logo above buttons */
+                margin-bottom: 15px; /* Space below logo */
+                width: 100%; /* Allow logo to take full width if needed */
+                text-align: center; /* Center logo image */
+            }
+            .logo img {
+                 max-width: 300px; /* Limit logo size */
+                 width: 80%; /* Relative width */
+                 margin: 0 auto; /* Center image if block */
+            }
+
 
             .buttons {
                 flex-direction: column;
@@ -255,16 +367,11 @@
                 width: 100%;
                 text-align: center;
                 padding: 12px;
-            }
-
-            .logo img {
-                width: 100%;
-                max-width: 300px;
-                margin-top: 10px;
+                font-size: 1em; /* Adjust font size */
             }
 
             main {
-                margin: 10px;
+                margin: 15px;
                 padding: 15px;
             }
 
@@ -276,9 +383,19 @@
                 font-size: 1em;
             }
 
-            .pdf-container embed {
-                height: 400px;
+            /* Adjust PDF embed height for tablets */
+             .fliphtml5-container-wrapper {
+                 padding-top: 75%; /* Example: Adjust for 4:3 aspect ratio on tablets */
+             }
+             /* You might need more specific breakpoints if 60% still works well on tablets */
+
+            td { /* Smaller crossword cells */
+                 width: 35px;
+                 height: 35px;
             }
+             input[type="text"] {
+                 font-size: 16px;
+             }
         }
 
         @media (max-width: 480px) {
@@ -288,11 +405,27 @@
 
             .button {
                 font-size: 0.9em;
+                 padding: 10px 20px; /* Slightly smaller padding */
             }
 
-            .pdf-container embed {
-                height: 300px;
+             /* Adjust PDF embed height for phones */
+             .fliphtml5-container-wrapper {
+                 padding-top: 100%; /* Example: Adjust for taller aspect ratio on phones */
+                 /* Or keep a fixed height if preferred on small screens */
+                 /* height: 400px; padding-top: 0; */
+             }
+
+            td { /* Even smaller crossword cells */
+                 width: 30px;
+                 height: 30px;
             }
+             input[type="text"] {
+                 font-size: 14px;
+             }
+            .clues {
+                 font-size: 0.9em; /* Smaller clue text */
+            }
+
         }
 
         /* Page Navigation */
@@ -302,11 +435,20 @@
 
         .content-page.active {
             display: block;
+            animation: fadeIn 0.5s forwards; /* Ensure fade-in works on page switch */
         }
+
     </style>
 </head>
 <body>
     <header>
+        <!-- Buttons moved below logo in HTML structure for potential semantic flow,
+             CSS `order` handles visual layout on mobile -->
+        <div class="logo">
+            <a href="https://pkmbhaktijaya.depok.go.id" target="_blank">
+                <img src="logo.png" alt="UPTD Puskesmas Baktijaya Logo - Green hexagon with cross and purple text">
+            </a>
+        </div>
         <div class="buttons">
             <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" class="button" target="_blank">BMI Calculator</a>
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
@@ -315,31 +457,26 @@
             <button id="dark-mode-toggle" class="button">Dark Mode</button>
             <button id="crossword-button" class="button">Crossword</button>
         </div>
-        <div class="logo">
-            <a href="https://pkmbhaktijaya.depok.go.id" target="_blank">
-                <img src="logo.png" alt="UPTD Puskesmas Baktijaya Logo - Green hexagon with cross and purple text">
-            </a>
-        </div>
     </header>
-    
+
     <main class="content-page active">
         <h1>Buku Pintar Bugar</h1>
         <p>
-            Mau tahu lebih tentang obesitas dan cara menanggulanginya? Baca buku pintar berikut kalau penasaran. 
+            Mau tahu lebih tentang obesitas dan cara menanggulanginya? Baca buku pintar berikut kalau penasaran.
         </p>
-       <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;">
-    <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" 
-            src="https://online.fliphtml5.com/zgmzq/vwnl/"  <!-- Corrected URL -->
-            seamless="seamless" 
-            scrolling="no" 
-            frameborder="0" 
-            allowtransparency="true" 
-            allowfullscreen="true">
-    </iframe>
-</div>
+        <!-- Container Wrapper for the iframe -->
+        <div class="fliphtml5-container-wrapper">
+            <iframe src="https://online.fliphtml5.com/zgmzq/vita/index.html"  <!-- CORRECTED URL -->
+                    seamless="seamless"
+                    scrolling="no"
+                    frameborder="0"
+                    allowtransparency="true"
+                    allowfullscreen="true">
+            </iframe>
         </div>
+        <!-- The extra </div> that was here has been removed -->
     </main>
-    
+
     <main class="content-page">
         <section class="crossword-section">
             <h2>Crossword: Hindari Obesitas</h2>
@@ -354,6 +491,7 @@
                 </ul>
             </div>
             <table id="crossword">
+                 <!-- Crossword Grid Structure -->
                 <tr>
                     <td class="black"></td>
                     <td class="black"></td>
@@ -394,24 +532,51 @@
             <div class="score" id="score">Skor: 0</div>
         </section>
     </main>
-    
+
     <footer>
         <p>© 2025 IPE-35. All rights reserved.</p>
     </footer>
-    
+
     <script>
         // Dark Mode Toggle
-        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            this.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = 'Light Mode';
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
         });
 
         // Page Navigation
-        document.getElementById('crossword-button').addEventListener('click', function() {
-            const pages = document.querySelectorAll('.content-page');
-            pages[0].classList.toggle('active');
-            pages[1].classList.toggle('active');
+        const crosswordButton = document.getElementById('crossword-button');
+        const pages = document.querySelectorAll('.content-page');
+        const homePage = pages[0]; // Assuming first main is home
+        const crosswordPage = pages[1]; // Assuming second main is crossword
+
+        crosswordButton.addEventListener('click', function() {
+            const isCrosswordActive = crosswordPage.classList.contains('active');
+            if (isCrosswordActive) {
+                // Switch back to home
+                crosswordPage.classList.remove('active');
+                homePage.classList.add('active');
+                crosswordButton.textContent = 'Crossword'; // Reset button text
+            } else {
+                // Switch to crossword
+                homePage.classList.remove('active');
+                crosswordPage.classList.add('active');
+                crosswordButton.textContent = 'Back to Book'; // Change button text
+            }
+             // Scroll to top might be useful when switching
+             window.scrollTo(0, 0);
         });
 
         // Crossword Logic
@@ -432,33 +597,96 @@
                 row: 0,
                 col: 2,
                 length: 5,
-                answer: 'OBESE',
+                answer: 'OBESE', // Changed from OBESITAS to fit grid
                 clue: 'Kondisi kelebihan lemak',
-                message: 'Benar! Menghindari obesitas penting untuk kesehatan jantung.'
+                message: 'Benar! Menghindari obesitas penting untuk kesehatan.' // Simplified message
             }
         ];
 
+        // Add event listeners for input navigation (optional but good UX)
+        const inputs = document.querySelectorAll('#crossword input[type="text"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                // Auto-focus next input in the same word direction if possible
+                // This requires more complex logic based on data attributes (data-across, data-down)
+                // For simplicity, just focus next input regardless of direction for now
+                const nextInput = input.closest('td').nextElementSibling?.querySelector('input') ||
+                                  input.closest('tr').nextElementSibling?.querySelector(`td:nth-child(${input.closest('td').cellIndex + 1}) input`);
+                if (e.target.value.length === 1 && nextInput && !nextInput.closest('td').classList.contains('black')) {
+                   // Basic next input focus - might need refinement for down/across logic
+                   // nextInput.focus();
+                }
+            });
+             input.addEventListener('keydown', (e) => {
+                 // Basic arrow key navigation (example for right arrow)
+                 if (e.key === 'ArrowRight') {
+                     const nextCell = input.closest('td').nextElementSibling;
+                     if (nextCell && !nextCell.classList.contains('black')) {
+                         nextCell.querySelector('input')?.focus();
+                         e.preventDefault(); // Prevent cursor move inside input
+                     }
+                 }
+                 // Add similar logic for Left, Up, Down
+             });
+        });
+
         function checkAnswers() {
             let score = 0;
+            let allCorrect = true; // Flag to check if all answers are right
+
             words.forEach(word => {
                 let userAnswer = '';
+                let correct = true; // Flag for this specific word
+
                 if (word.type === 'across') {
                     for (let i = 0; i < word.length; i++) {
                         const input = document.querySelector(`input[data-row="${word.row}"][data-col="${word.col + i}"]`);
-                        userAnswer += input.value.toUpperCase();
+                        if (input) {
+                            const char = input.value.toUpperCase();
+                            userAnswer += char;
+                            if (char !== word.answer[i]) {
+                                correct = false;
+                            }
+                        } else {
+                             correct = false; // Input not found
+                             break;
+                        }
                     }
                 } else { // down
                     for (let i = 0; i < word.length; i++) {
-                        const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
-                        userAnswer += input.value.toUpperCase();
+                         const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
+                         if (input) {
+                             const char = input.value.toUpperCase();
+                            userAnswer += char;
+                            if (char !== word.answer[i]) {
+                                correct = false;
+                            }
+                         } else {
+                             correct = false; // Input not found
+                             break;
+                         }
                     }
                 }
-                if (userAnswer === word.answer) {
+
+                if (userAnswer.length === word.length && userAnswer === word.answer) {
                     score += 10;
-                    alert(word.message);
+                    // Optionally provide feedback per word, or wait until the end
+                    console.log(`${word.answer}: Correct!`); // Log feedback instead of alert spam
+                } else {
+                    allCorrect = false; // At least one word is wrong
                 }
             });
+
             document.getElementById('score').textContent = `Skor: ${score}`;
+
+            if (allCorrect && score > 0) { // Check score > 0 in case there are no words defined
+                 alert('Selamat! Semua jawaban benar!');
+            } else if (score > 0) {
+                 alert('Beberapa jawaban benar. Coba lagi untuk menyempurnakan!');
+            }
+             else {
+                 alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya!');
+            }
         }
     </script>
 </body>
