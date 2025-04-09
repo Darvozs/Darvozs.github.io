@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -580,44 +581,28 @@
         });
 
         // Crossword Logic
-        <section class="crossword-section">
-        col: 4,
-        length: 6,
-        answer: 'HIPERTENSI',
-        clue: 'Penyakit akibat tekanan...',
-        message: 'Benar! Hipertensi berbahaya jika tidak diobati.'
-    },
-    {
-        type: 'down',
-        number: 4,
-        row: 3,
-        col: 4,
-        length: 3,
-        answer: 'OMEGA',
-        clue: 'Nama lemak sehat...',
-        message: 'Benar! Omega-3 baik untuk jantung.'
-    },
-    {
-        type: 'down',
-        number: 5,
-        row: 4,
-        col: 4,
-        length: 4,
-        answer: 'STRES',
-        clue: 'Dampak obesitas pada mental...',
-        message: 'Benar! Obesitas bisa menyebabkan stres.'
-    },
-    {
-        type: 'down',
-        number: 6,
-        row: 5,
-        col: 4,
-        length: 4,
-        answer: 'LARI',
-        clue: 'Contoh aktivitas fisik...',
-        message: 'Benar! Lari adalah latihan intensitas tinggi.'
-    }
-];
+        const words = [
+            {
+                type: 'across',
+                number: 3,
+                row: 2,
+                col: 0,
+                length: 4,
+                answer: 'DIET',
+                clue: 'Cara makan untuk kesehatan',
+                message: 'Benar! Diet seimbang membantu mencegah obesitas.'
+            },
+            {
+                type: 'down',
+                number: 1,
+                row: 0,
+                col: 2,
+                length: 5,
+                answer: 'OBESE', // Changed from OBESITAS to fit grid
+                clue: 'Kondisi kelebihan lemak',
+                message: 'Benar! Menghindari obesitas penting untuk kesehatan.' // Simplified message
+            }
+        ];
 
         // Add event listeners for input navigation (optional but good UX)
         const inputs = document.querySelectorAll('#crossword input[type="text"]');
