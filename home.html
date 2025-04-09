@@ -300,10 +300,7 @@
         }
 
         /* Dark Mode Styling */
-        body.dark-mode {
-            background: linear-gradient(to bottom, #2c3e50, #1a1a2e);
-            color: #ecf0f1;
-        }
+        body.dark-mode { background: linear-gradient(to bottom, #2c3e50, #1a1a2e); color: #ecf0f1; }
         body.dark-mode header { background-color: #1f2023; box-shadow: 0 2px 5px rgba(255,255,255,0.05); }
         body.dark-mode main { background-color: #2a2c30; color: #ecf0f1; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
         body.dark-mode h1, body.dark-mode h2 { color: #58D68D; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
@@ -323,33 +320,9 @@
         body.dark-mode .score { color: #58D68D; }
 
         /* Responsive Design */
-        @media (max-width: 920px) {
-             header { flex-direction: column; align-items: center; padding: 15px; }
-            .logo { order: -1; margin-bottom: 15px; width: auto; max-width: 300px; margin-left: auto; margin-right: auto; }
-             .buttons { justify-content: center; width: 100%; }
-        }
-        @media (max-width: 768px) {
-            main { margin: 15px; padding: 15px; }
-            h1 { font-size: 2em; }
-            p { font-size: 1em; }
-            .fliphtml5-container-wrapper { padding-top: 75%; }
-            #crossword td { width: 30px; height: 30px; }
-            #crossword input[type="text"] { font-size: 14px; }
-            #crossword sup { font-size: 8px; }
-            .clues-container { flex-direction: column; align-items: center; }
-            .clues { max-width: 90%; }
-        }
-        @media (max-width: 480px) {
-             body { line-height: 1.5; }
-            h1 { font-size: 1.8em; }
-            .button { font-size: 0.9em; padding: 10px 15px; }
-            .fliphtml5-container-wrapper { padding-top: 100%; }
-            #crossword td { width: 26px; height: 26px; }
-            #crossword input[type="text"] { font-size: 12px; }
-            #crossword sup { font-size: 7px; }
-            .clues { font-size: 0.9em; }
-            .crossword-section button { padding: 10px 20px; font-size: 1em; }
-        }
+        @media (max-width: 920px) { header { flex-direction: column; align-items: center; padding: 15px; } .logo { order: -1; margin-bottom: 15px; width: auto; max-width: 300px; margin-left: auto; margin-right: auto; } .buttons { justify-content: center; width: 100%; } }
+        @media (max-width: 768px) { main { margin: 15px; padding: 15px; } h1 { font-size: 2em; } p { font-size: 1em; } .fliphtml5-container-wrapper { padding-top: 75%; } #crossword td { width: 30px; height: 30px; } #crossword input[type="text"] { font-size: 14px; } #crossword sup { font-size: 8px; } .clues-container { flex-direction: column; align-items: center; } .clues { max-width: 90%; } }
+        @media (max-width: 480px) { body { line-height: 1.5; } h1 { font-size: 1.8em; } .button { font-size: 0.9em; padding: 10px 15px; } .fliphtml5-container-wrapper { padding-top: 100%; } #crossword td { width: 26px; height: 26px; } #crossword input[type="text"] { font-size: 12px; } #crossword sup { font-size: 7px; } .clues { font-size: 0.9em; } .crossword-section button { padding: 10px 20px; font-size: 1em; } }
 
         /* Page Navigation */
         .content-page { display: none; }
@@ -388,7 +361,7 @@
              <div class="clues-container">
                  <div class="clues">
                      <h3>Mendatar</h3>
-                     <!-- Using clues from the original image, as the new constraints were contradictory -->
+                     <!-- Clues remain the same as previous version -->
                      <ul>
                          <li>1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
                          <li>2 Rasio lingkar pinggang dan tinggi badan.</li>
@@ -409,7 +382,7 @@
                  </div>
             </div>
 
-            <!-- Grid based on image.png (EMPTY) -->
+            <!-- Grid based *strictly* on the STRUCTURE of image.png (EMPTY) -->
             <table id="crossword">
                  <!-- Row 0 -->
                  <tr>
@@ -502,7 +475,8 @@
                   <!-- Row 8 -->
                   <tr>
                      <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
-                     <td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="1" data-down="1"></td>
+                     <td class="black"></td><td class="black"></td><td class="black"></td><td class="black"></td>
                      <td><input type="text" maxlength="1" data-row="8" data-col="6" data-down="6"></td>
                      <td><sup>8</sup><input type="text" maxlength="1" data-row="8" data-col="7" data-across="8"></td>
                      <td><input type="text" maxlength="1" data-row="8" data-col="8" data-across="8" data-down="3"></td>
@@ -580,24 +554,24 @@
              window.scrollTo(0, 0);
         });
 
-        // JS Data based on the layout from image.png
+        // JS Data based on the STRUCTURE from image.png, using CORRECT answers
         const words = [
             // Mendatar (Across)
-            { type: 'across', number: 1, row: 1, col: 1, length: 5, answer: 'BUGAR', clue: '...' },
-            { type: 'across', number: 2, row: 0, col: 7, length: 4, answer: 'WHTR', clue: '...' },
-            { type: 'across', number: 5, row: 5, col: 0, length: 8, answer: 'DIABETES', clue: '...' },
-            { type: 'across', number: 7, row: 7, col: 4, length: 7, answer: 'KENYANG', clue: '...' },
-            { type: 'across', number: 8, row: 8, col: 7, length: 3, answer: 'BMI', clue: '...' }, // Note: image.png shows 8 Across
+            { type: 'across', number: 1, row: 1, col: 1, length: 5, answer: 'BUGAR' },
+            { type: 'across', number: 2, row: 0, col: 7, length: 4, answer: 'WHTR' },
+            { type: 'across', number: 5, row: 5, col: 0, length: 8, answer: 'DIABETES' }, // 8 letters
+            { type: 'across', number: 7, row: 7, col: 4, length: 7, answer: 'KENYANG' },
+            { type: 'across', number: 8, row: 8, col: 7, length: 3, answer: 'BMI' },
             // Menurun (Down)
-            { type: 'down', number: 1, row: 1, col: 1, length: 8, answer: 'BERJALAN', clue: '...' },
-            { type: 'down', number: 3, row: 0, col: 8, length: 11, answer: 'HIPERTENSI', clue: '...' },
-            { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA', clue: '...' },
-            { type: 'down', number: 5, row: 5, col: 0, length: 7, answer: 'DEPRESI', clue: '...' },
-            { type: 'down', number: 6, row: 5, col: 6, length: 6, answer: 'SPRINT', clue: '...' }
+            { type: 'down', number: 1, row: 1, col: 1, length: 8, answer: 'BERJALAN' }, // 8 letters
+            { type: 'down', number: 3, row: 0, col: 8, length: 10, answer: 'HIPERTENSI' }, // 10 letters
+            { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
+            { type: 'down', number: 5, row: 5, col: 0, length: 7, answer: 'DEPRESI' }, // 7 letters
+            { type: 'down', number: 6, row: 5, col: 6, length: 6, answer: 'SPRINT' }
         ];
 
-        // Add full clues from the list to the JS words array for better context if needed later
-        const cluesList = {
+        // Add full clues from the list to the JS words array
+         const cluesList = {
              mendatar: [
                  "1 Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.",
                  "2 Rasio lingkar pinggang dan tinggi badan.",
@@ -624,7 +598,7 @@
                  const foundClue = cluesList.menurun.find(c => c.startsWith(clueNum + " "));
                  if (foundClue) clueText = foundClue;
              }
-             word.clue = clueText; // Add the full clue text to the word object
+             word.clue = clueText; // Add the full clue text
          });
 
 
