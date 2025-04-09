@@ -229,6 +229,7 @@
             font-size: 9px;
             line-height: 1;
             color: #555;
+            pointer-events: none; /* Make numbers non-interactive */
         }
 
         #crossword input[type="text"] { /* More specific selector */
@@ -565,7 +566,7 @@
                  </div>
             </div>
 
-            <!-- Updated Crossword Grid -->
+            <!-- EMPTY Crossword Grid -->
              <table id="crossword">
                  <!-- Row 0 -->
                  <tr>
@@ -575,144 +576,144 @@
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><sup>2</sup><input type="text" maxlength="1" value="W" data-row="0" data-col="6" data-across="2"></td>
-                     <td><sup>3</sup><input type="text" maxlength="1" value="H" data-row="0" data-col="7" data-across="2" data-down="3"></td>
-                     <td><input type="text" maxlength="1" value="T" data-row="0" data-col="8" data-across="2"></td>
-                     <td><input type="text" maxlength="1" value="R" data-row="0" data-col="9" data-across="2"></td>
+                     <td><sup>2</sup><input type="text" maxlength="1" data-row="0" data-col="6" data-across="2"></td>
+                     <td><sup>3</sup><input type="text" maxlength="1" data-row="0" data-col="7" data-across="2" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="0" data-col="8" data-across="2"></td>
+                     <td><input type="text" maxlength="1" data-row="0" data-col="9" data-across="2"></td>
                  </tr>
                  <!-- Row 1 -->
                  <tr>
                      <td class="black"></td>
-                     <td><sup>1</sup><input type="text" maxlength="1" value="B" data-row="1" data-col="1" data-across="1" data-down="1"></td>
-                     <td><input type="text" maxlength="1" value="U" data-row="1" data-col="2" data-across="1"></td>
-                     <td><input type="text" maxlength="1" value="G" data-row="1" data-col="3" data-across="1"></td>
-                     <td><input type="text" maxlength="1" value="A" data-row="1" data-col="4" data-across="1"></td>
-                     <td><input type="text" maxlength="1" value="R" data-row="1" data-col="5" data-across="1"></td>
+                     <td><sup>1</sup><input type="text" maxlength="1" data-row="1" data-col="1" data-across="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="2" data-across="1"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="3" data-across="1"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="4" data-across="1"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="5" data-across="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="I" data-row="1" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="1" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
                  <!-- Row 2 -->
                  <tr>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="E" data-row="2" data-col="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="2" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><sup>4</sup><input type="text" maxlength="1" value="O" data-row="2" data-col="3" data-down="4"></td>
+                     <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="3" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="P" data-row="2" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="2" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
                   <!-- Row 3 -->
                  <tr>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="R" data-row="3" data-col="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="3" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="M" data-row="3" data-col="3" data-down="4"></td>
+                     <td><input type="text" maxlength="1" data-row="3" data-col="3" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="E" data-row="3" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="3" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
                   <!-- Row 4 -->
                  <tr>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="J" data-row="4" data-col="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="4" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="G" data-row="4" data-col="3" data-down="4"></td>
+                     <td><input type="text" maxlength="1" data-row="4" data-col="3" data-down="4"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="R" data-row="4" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="4" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 5 -->
                   <tr>
-                     <td><sup>5</sup><input type="text" maxlength="1" value="D" data-row="5" data-col="0" data-across="5" data-down="5"></td>
-                     <td><input type="text" maxlength="1" value="I" data-row="5" data-col="1" data-across="5" data-down="1"></td>
-                     <td><input type="text" maxlength="1" value="A" data-row="5" data-col="2" data-across="5"></td>
-                     <td><input type="text" maxlength="1" value="B" data-row="5" data-col="3" data-across="5" data-down="4"></td>
-                     <td><input type="text" maxlength="1" value="E" data-row="5" data-col="4" data-across="5"></td>
-                     <td><sup>6</sup><input type="text" maxlength="1" value="T" data-row="5" data-col="5" data-across="5" data-down="6"></td>
-                     <td><input type="text" maxlength="1" value="E" data-row="5" data-col="6" data-across="5"></td>
-                     <td><input type="text" maxlength="1" value="S" data-row="5" data-col="7" data-across="5" data-down="3"></td>
+                     <td><sup>5</sup><input type="text" maxlength="1" data-row="5" data-col="0" data-across="5" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="1" data-across="5" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="2" data-across="5"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="3" data-across="5" data-down="4"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="4" data-across="5"></td>
+                     <td><sup>6</sup><input type="text" maxlength="1" data-row="5" data-col="5" data-across="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="6" data-across="5"></td>
+                     <td><input type="text" maxlength="1" data-row="5" data-col="7" data-across="5" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                  </tr>
                   <!-- Row 6 -->
                   <tr>
-                     <td><input type="text" maxlength="1" value="E" data-row="6" data-col="0" data-down="5"></td>
-                     <td><input type="text" maxlength="1" value="A" data-row="6" data-col="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="A" data-row="6" data-col="3" data-down="4"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="3" data-down="4"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="P" data-row="6" data-col="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="5" data-down="6"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="T" data-row="6" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 7 -->
                   <tr>
-                     <td><input type="text" maxlength="1" value="P" data-row="7" data-col="0" data-down="5"></td>
-                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="1" data-down="1"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="1" data-down="1"></td>
                      <td class="black"></td>
-                     <td><sup>7</sup><input type="text" maxlength="1" value="K" data-row="7" data-col="3" data-across="7"></td>
-                     <td><input type="text" maxlength="1" value="E" data-row="7" data-col="4" data-across="7"></td>
-                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="5" data-across="7" data-down="6"></td>
-                     <td><input type="text" maxlength="1" value="Y" data-row="7" data-col="6" data-across="7"></td>
-                     <td><input type="text" maxlength="1" value="A" data-row="7" data-col="7" data-across="7" data-down="3"></td>
-                     <td><input type="text" maxlength="1" value="N" data-row="7" data-col="8" data-across="7"></td>
-                     <td><input type="text" maxlength="1" value="G" data-row="7" data-col="9" data-across="7"></td>
+                     <td><sup>7</sup><input type="text" maxlength="1" data-row="7" data-col="3" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="4" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="5" data-across="7" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="6" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="7" data-across="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="8" data-across="7"></td>
+                     <td><input type="text" maxlength="1" data-row="7" data-col="9" data-across="7"></td>
                   </tr>
                   <!-- Row 8 -->
                   <tr>
-                     <td><input type="text" maxlength="1" value="R" data-row="8" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><sup>8</sup><input type="text" maxlength="1" value="B" data-row="8" data-col="5" data-across="8" data-down="6"></td>
-                     <td><input type="text" maxlength="1" value="M" data-row="8" data-col="6" data-across="8"></td>
-                     <td><input type="text" maxlength="1" value="I" data-row="8" data-col="7" data-across="8" data-down="3"></td>
+                     <td><sup>8</sup><input type="text" maxlength="1" data-row="8" data-col="5" data-across="8" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="6" data-across="8"></td>
+                     <td><input type="text" maxlength="1" data-row="8" data-col="7" data-across="8" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 9 -->
                   <tr>
-                     <td><input type="text" maxlength="1" value="E" data-row="9" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="T" data-row="9" data-col="5" data-down="6"></td>
+                     <td><input type="text" maxlength="1" data-row="9" data-col="5" data-down="6"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="S" data-row="9" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="9" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                    <!-- Row 10 -->
                    <tr>
-                     <td><input type="text" maxlength="1" value="S" data-row="10" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
-                     <td><input type="text" maxlength="1" value="I" data-row="10" data-col="7" data-down="3"></td>
+                     <td><input type="text" maxlength="1" data-row="10" data-col="7" data-down="3"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                   </tr>
                   <!-- Row 11 -->
                   <tr>
-                     <td><input type="text" maxlength="1" value="I" data-row="11" data-col="0" data-down="5"></td>
+                     <td><input type="text" maxlength="1" data-row="11" data-col="0" data-down="5"></td>
                      <td class="black"></td>
                      <td class="black"></td>
                      <td class="black"></td>
@@ -834,7 +835,7 @@
                     const nextCol = parseInt(col) + 1;
                     let nextInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${nextCol}"]`);
 
-                    // If no input to the right, try to move down (common for down words starting)
+                    // If no input to the right, or it's black, try to move down
                     if (!nextInput || nextInput.closest('td').classList.contains('black')) {
                          const nextRow = parseInt(row) + 1;
                          nextInput = document.querySelector(`#crossword input[data-row="${nextRow}"][data-col="${col}"]`);
@@ -850,41 +851,48 @@
             input.addEventListener('keydown', (e) => {
                  const { row, col } = e.target.dataset;
                  let targetInput = null;
+                 const currentRow = parseInt(row);
+                 const currentCol = parseInt(col);
 
                  switch (e.key) {
                      case 'ArrowRight':
-                         targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) + 1}"]`);
+                         targetInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol + 1}"]`);
                          break;
                      case 'ArrowLeft':
-                          targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`);
+                          targetInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol - 1}"]`);
                          break;
                      case 'ArrowDown':
-                          targetInput = document.querySelector(`#crossword input[data-row="${parseInt(row) + 1}"][data-col="${col}"]`);
+                          targetInput = document.querySelector(`#crossword input[data-row="${currentRow + 1}"][data-col="${currentCol}"]`);
                          break;
                      case 'ArrowUp':
-                          targetInput = document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`);
+                          targetInput = document.querySelector(`#crossword input[data-row="${currentRow - 1}"][data-col="${currentCol}"]`);
                          break;
                      case 'Backspace':
-                         if (e.target.value === '') { // If already empty, move back
-                             targetInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`) || // Try left first
-                                          document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`); // Then try up
+                         if (e.target.value === '') { // If already empty, move back and clear previous if needed
+                             // Try moving left first
+                             let prevInput = document.querySelector(`#crossword input[data-row="${currentRow}"][data-col="${currentCol - 1}"]`);
+                             if (prevInput && !prevInput.closest('td').classList.contains('black')) {
+                                 targetInput = prevInput;
+                             } else {
+                                 // Try moving up if left doesn't work or is black
+                                 prevInput = document.querySelector(`#crossword input[data-row="${currentRow - 1}"][data-col="${currentCol}"]`);
+                                 if (prevInput && !prevInput.closest('td').classList.contains('black')) {
+                                     targetInput = prevInput;
+                                 }
+                             }
+                              // Add logic here if you want backspace to clear the previous cell's content too
                          }
                          break;
+                     case 'Enter': // Optionally, trigger checkAnswers on Enter
+                          e.preventDefault();
+                          checkAnswers();
+                          break;
                  }
 
                  if (targetInput && !targetInput.closest('td').classList.contains('black')) {
                      targetInput.focus();
                      targetInput.select();
                      e.preventDefault(); // Prevent default arrow key behavior (scrolling)
-                 } else if (e.key === 'Backspace' && targetInput && targetInput.closest('td').classList.contains('black')){
-                    // If backspace target is black cell, try moving again
-                     e.preventDefault();
-                     const prevInput = document.querySelector(`#crossword input[data-row="${row}"][data-col="${parseInt(col) - 1}"]`) ||
-                                       document.querySelector(`#crossword input[data-row="${parseInt(row) - 1}"][data-col="${col}"]`);
-                     if(prevInput && !prevInput.closest('td').classList.contains('black')) {
-                         prevInput.focus();
-                         prevInput.select();
-                     }
                  }
             });
         });
@@ -894,14 +902,26 @@
             let totalWords = words.length;
             let correctWords = 0;
 
+             // Reset all cell borders first
+            document.querySelectorAll('#crossword td').forEach(cell => {
+                 if (!cell.classList.contains('black')) { // Only reset non-black cells
+                     cell.style.borderColor = body.classList.contains('dark-mode') ? '#555' : '#ccc';
+                 }
+            });
+
+
             words.forEach(word => {
                 let userAnswer = '';
                 let isWordCorrect = true;
+                let cellsForThisWord = []; // Store cells for potential feedback styling
 
                 if (word.type === 'across') {
                     for (let i = 0; i < word.length; i++) {
-                        const input = document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`);
-                        if (input && !input.closest('td').classList.contains('black')) {
+                        const cellElement = document.querySelector(`#crossword td:has(input[data-row="${word.row}"][data-col="${word.col + i}"])`); // Get TD
+                        const input = cellElement?.querySelector('input'); // Get input inside TD
+
+                        if (input && !cellElement.classList.contains('black')) {
+                            cellsForThisWord.push(cellElement); // Add TD to list
                             const char = input.value.toUpperCase();
                             userAnswer += char;
                             if (char !== word.answer[i]) {
@@ -914,8 +934,11 @@
                     }
                 } else { // down
                     for (let i = 0; i < word.length; i++) {
-                         const input = document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`);
-                         if (input && !input.closest('td').classList.contains('black')) {
+                         const cellElement = document.querySelector(`#crossword td:has(input[data-row="${word.row + i}"][data-col="${word.col}"])`); // Get TD
+                         const input = cellElement?.querySelector('input'); // Get input inside TD
+
+                         if (input && !cellElement.classList.contains('black')) {
+                             cellsForThisWord.push(cellElement); // Add TD to list
                              const char = input.value.toUpperCase();
                             userAnswer += char;
                             if (char !== word.answer[i]) {
@@ -931,23 +954,22 @@
                 // Check if the formed word matches the answer exactly
                  if (isWordCorrect && userAnswer.length === word.length && userAnswer === word.answer) {
                     correctWords++;
-                    // Optionally add visual feedback like changing border color of correct cells
-                    for (let i = 0; i < word.length; i++) {
-                       const cell = (word.type === 'across')
-                            ? document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`)?.closest('td')
-                            : document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`)?.closest('td');
-                       if (cell) cell.style.borderColor = 'lightgreen'; // Example feedback
-                    }
-
+                    // Apply 'correct' styling to the cells of this word
+                    cellsForThisWord.forEach(cell => {
+                       cell.style.borderColor = 'lightgreen'; // Example feedback: green border
+                       // cell.style.backgroundColor = 'rgba(144, 238, 144, 0.2)'; // Optional: light green background
+                    });
                 } else {
-                    // Optionally reset border color if previously correct but now wrong
-                     for (let i = 0; i < word.length; i++) {
-                       const cell = (word.type === 'across')
-                            ? document.querySelector(`#crossword input[data-row="${word.row}"][data-col="${word.col + i}"]`)?.closest('td')
-                            : document.querySelector(`#crossword input[data-row="${word.row + i}"][data-col="${word.col}"]`)?.closest('td');
-                       // Reset to default or dark mode border color
-                       if (cell) cell.style.borderColor = body.classList.contains('dark-mode') ? '#555' : '#ccc';
+                     // Apply 'incorrect' styling (optional, could just leave default border)
+                    /*
+                    if (userAnswer.length === word.length) { // Only mark as incorrect if fully filled but wrong
+                        cellsForThisWord.forEach(cell => {
+                           cell.style.borderColor = 'salmon'; // Example feedback: red border
+                           // cell.style.backgroundColor = 'rgba(250, 128, 114, 0.2)'; // Optional: light red background
+                        });
                     }
+                    */
+                     // If not fully correct, ensure default border is set (handled by the reset at the start)
                 }
             });
 
