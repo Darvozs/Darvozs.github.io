@@ -840,6 +840,24 @@
             display: block;
             animation: fadeIn 0.5s forwards;
         }
+
+        /* Crossword cursor styles */
+        .active-across {
+            background-color: #e8f5e9;
+        }
+
+        .active-down {
+            background-color: #e3f2fd;
+        }
+
+        body.dark-mode .active-across {
+            background-color: #1e3a1e;
+        }
+
+        body.dark-mode .active-down {
+            background-color: #1a237e;
+        }
+
     </style>
 </head>
 <body>
@@ -853,7 +871,7 @@
             <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" class="button" target="_blank">BMI Calculator</a>
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
-            <button id="back-to-book" class="button">Kembali ke Buku</button>
+            <button id="back-to-book" class="button">Menu Utama</button>
         </div>
     </header>
 
@@ -961,21 +979,21 @@
                 <div class="clues">
                     <h3>Mendatar</h3>
                     <ul>
-                        <li data-number="1">Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
-                        <li data-number="2">Rasio lingkar pinggang dan tinggi badan.</li>
-                        <li data-number="5">Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
-                        <li data-number="7">Pada saat apa tubuh memberikan sinyal untuk berhalti makan.</li>
-                        <li data-number="8">Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
+                        <li data-number="1" onclick="highlightWord(1, 'across')">Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
+                        <li data-number="2" onclick="highlightWord(2, 'across')">Rasio lingkar pinggang dan tinggi badan.</li>
+                        <li data-number="5" onclick="highlightWord(5, 'across')">Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
+                        <li data-number="7" onclick="highlightWord(7, 'across')">Pada saat apa tubuh memberikan sinyal untuk berhalti makan.</li>
+                        <li data-number="8" onclick="highlightWord(8, 'across')">Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
                     </ul>
                 </div>
                 <div class="clues">
                     <h3>Menurun</h3>
                     <ul>
-                        <li data-number="1">Contoh aktivitas fisik dengan level rendah.</li>
-                        <li data-number="3">Penyakit akibat tekanan darah tinggi.</li>
-                        <li data-number="4">Nama lemak sehat yang membantu manajemen berat badan.</li>
-                        <li data-number="5">Dampak obesitas pada mental.</li>
-                        <li data-number="6">Contoh aktivitas fisik dengan level tinggi.</li>
+                        <li data-number="1" onclick="highlightWord(1, 'down')">Contoh aktivitas fisik dengan level rendah.</li>
+                        <li data-number="3" onclick="highlightWord(3, 'down')">Penyakit akibat tekanan darah tinggi.</li>
+                        <li data-number="4" onclick="highlightWord(4, 'down')">Nama lemak sehat yang membantu manajemen berat badan.</li>
+                        <li data-number="5" onclick="highlightWord(5, 'down')">Dampak obesitas pada mental.</li>
+                        <li data-number="6" onclick="highlightWord(6, 'down')">Contoh aktivitas fisik dengan level tinggi.</li>
                     </ul>
                 </div>
             </div>
@@ -1370,7 +1388,7 @@
         // Check on page load if all missions are completed
         window.addEventListener('load', checkAllCompleted);
 
-        // Crossword Logic
+       // Crossword Logic
         const words = [
             { type: 'across', number: 1, row: 0, col: 2, length: 5, answer: 'BUGAR' },
             { type: 'across', number: 2, row: 1, col: 9, length: 4, answer: 'WHTR' },
@@ -1384,10 +1402,15 @@
             { type: 'down', number: 6, row: 4, col: 7, length: 6, answer: 'SPRINT' }
         ];
 
-        // Initialize crossword
-        document.addEventListener('DOMContentLoaded', function() {
-            // Focus first input when crossword page is shown
+        let currentWord = null;
+        let currentDirection = 'across';
+
+
+         // Initialize crossword
+         document.addEventListener('DOMContentLoaded', function() {
             const crosswordInputs = document.querySelectorAll('#crossword input');
+            
+            // Focus first input when crossword page is shown
             if (crosswordInputs.length > 0) {
                 crosswordInputs[0].focus();
             }
@@ -1396,84 +1419,188 @@
             crosswordInputs.forEach(input => {
                 input.addEventListener('input', function() {
                     if (this.value.length === 1) {
-                        const nextInput = findNextInput(this);
-                        if (nextInput) {
-                            nextInput.focus();
-                        }
+                        moveToNextCell(this);
                     }
                 });
 
-                // Allow navigation with arrow keys
+                // Handle arrow key navigation
                 input.addEventListener('keydown', function(e) {
                     if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || 
                         e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
                         navigateWithArrows(this, e.key);
+                        e.preventDefault();
                     }
+                });
+
+                // Handle focus to highlight current word
+                input.addEventListener('focus', function() {
+                    updateCurrentWord(this);
+                    highlightCurrentWord();
+                });
+
+                // Handle click to toggle direction if on intersection
+                input.addEventListener('click', function() {
+                    if (currentWord && this.dataset.across && this.dataset.down) {
+                        toggleDirection();
+                    }
+                    updateCurrentWord(this);
+                    highlightCurrentWord();
                 });
             });
         });
 
-        // Find next input in crossword
-        function findNextInput(currentInput) {
+        // Update current word based on focused cell
+        function updateCurrentWord(input) {
+            const row = parseInt(input.dataset.row);
+            const col = parseInt(input.dataset.col);
+            
+            // Find all words that contain this cell
+            const containingWords = words.filter(word => {
+                if (word.type === 'across') {
+                    return (row === word.row && col >= word.col && col < word.col + word.length);
+                } else {
+                    return (col === word.col && row >= word.row && row < word.row + word.length);
+                }
+            });
+
+            // If current word is still valid, keep it
+            if (currentWord && containingWords.some(w => w.number === currentWord.number && w.type === currentWord.type)) {
+                return;
+            }
+
+            // Otherwise find the best word to switch to
+            if (containingWords.length > 0) {
+                // Prefer current direction if available
+                const sameDir = containingWords.find(w => w.type === currentDirection);
+                if (sameDir) {
+                    currentWord = sameDir;
+                } else {
+                    // Otherwise switch to the other direction
+                    currentWord = containingWords[0];
+                    currentDirection = currentWord.type;
+                }
+            }
+        }
+
+        // Highlight current word
+        function highlightCurrentWord() {
+            // Clear previous highlights
+            document.querySelectorAll('#crossword input').forEach(input => {
+                input.classList.remove('active-across', 'active-down');
+            });
+
+            if (!currentWord) return;
+
+            // Highlight current word
+            for (let i = 0; i < currentWord.length; i++) {
+                let row, col;
+                if (currentWord.type === 'across') {
+                    row = currentWord.row;
+                    col = currentWord.col + i;
+                } else {
+                    row = currentWord.row + i;
+                    col = currentWord.col;
+                }
+
+                const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                if (input) {
+                    input.classList.add(currentWord.type === 'across' ? 'active-across' : 'active-down');
+                }
+            }
+        }
+
+        // Toggle direction between across and down
+        function toggleDirection() {
+            currentDirection = currentDirection === 'across' ? 'down' : 'across';
+            
+            // Find word in new direction that shares this cell
+            if (currentWord) {
+                const row = currentWord.row;
+                const col = currentWord.col;
+                
+                const newWord = words.find(word => 
+                    word.type === currentDirection && 
+                    ((word.type === 'across' && row === word.row && col >= word.col && col < word.col + word.length) ||
+                     (word.type === 'down' && col === word.col && row >= word.row && row < word.row + word.length))
+                );
+                
+                if (newWord) {
+                    currentWord = newWord;
+                }
+            }
+            
+            highlightCurrentWord();
+        }
+
+        // Move to next cell in current direction
+        function moveToNextCell(currentInput) {
+            if (!currentWord) return;
+
             const row = parseInt(currentInput.dataset.row);
             const col = parseInt(currentInput.dataset.col);
-            const inputs = document.querySelectorAll('#crossword input');
+            let nextRow = row;
+            let nextCol = col;
 
-            // Try to find next input in row
-            for (let i = 0; i < inputs.length; i++) {
-                const inputRow = parseInt(inputs[i].dataset.row);
-                const inputCol = parseInt(inputs[i].dataset.col);
-
-                if (inputRow === row && inputCol === col + 1) {
-                    return inputs[i];
-                }
+            if (currentDirection === 'across') {
+                nextCol = col + 1;
+            } else {
+                nextRow = row + 1;
             }
 
-            // If no next in row, find first input in next row
-            for (let i = 0; i < inputs.length; i++) {
-                const inputRow = parseInt(inputs[i].dataset.row);
-                const inputCol = parseInt(inputs[i].dataset.col);
-
-                if (inputRow === row + 1 && inputCol === 0) {
-                    return inputs[i];
-                }
+            const nextInput = document.querySelector(`#crossword input[data-row="${nextRow}"][data-col="${nextCol}"]`);
+            if (nextInput) {
+                nextInput.focus();
             }
-
-            return null;
         }
 
         // Navigate with arrow keys
         function navigateWithArrows(currentInput, direction) {
             const row = parseInt(currentInput.dataset.row);
             const col = parseInt(currentInput.dataset.col);
-            const inputs = document.querySelectorAll('#crossword input');
-
             let targetRow = row;
             let targetCol = col;
 
             switch (direction) {
                 case 'ArrowUp':
                     targetRow = row - 1;
+                    if (currentDirection === 'across') currentDirection = 'down';
                     break;
                 case 'ArrowDown':
                     targetRow = row + 1;
+                    if (currentDirection === 'across') currentDirection = 'down';
                     break;
                 case 'ArrowLeft':
                     targetCol = col - 1;
+                    if (currentDirection === 'down') currentDirection = 'across';
                     break;
                 case 'ArrowRight':
                     targetCol = col + 1;
+                    if (currentDirection === 'down') currentDirection = 'across';
                     break;
             }
 
-            for (let i = 0; i < inputs.length; i++) {
-                const inputRow = parseInt(inputs[i].dataset.row);
-                const inputCol = parseInt(inputs[i].dataset.col);
+            const targetInput = document.querySelector(`#crossword input[data-row="${targetRow}"][data-col="${targetCol}"]`);
+            if (targetInput) {
+                targetInput.focus();
+                updateCurrentWord(targetInput);
+                highlightCurrentWord();
+            }
+        }
 
-                if (inputRow === targetRow && inputCol === targetCol) {
-                    inputs[i].focus();
-                    break;
+        // Highlight word when clue is clicked
+        function highlightWord(number, direction) {
+            currentDirection = direction;
+            currentWord = words.find(word => word.number === number && word.type === direction);
+            
+            if (currentWord) {
+                // Focus first cell of the word
+                const firstInput = document.querySelector(
+                    `#crossword input[data-row="${currentWord.row}"][data-col="${currentWord.col}"]`
+                );
+                if (firstInput) {
+                    firstInput.focus();
                 }
+                highlightCurrentWord();
             }
         }
 
@@ -1514,6 +1641,11 @@
                     if (input) {
                         userAnswer += input.value.toUpperCase();
                     }
+                }
+
+                // Only show answers for non-empty attempts
+                if (userAnswer.trim() === '') {
+                    return;
                 }
 
                 // Compare with correct answer
@@ -1584,8 +1716,28 @@
                 }
             });
 
-            // Calculate and display score
-            const score = Math.round((correctCount / totalWords) * 100);
+            // Calculate and display score (only for attempted words)
+            const attemptedWords = words.filter(word => {
+                let hasValue = false;
+                for (let i = 0; i < word.length; i++) {
+                    let row, col;
+                    if (word.type === 'across') {
+                        row = word.row;
+                        col = word.col + i;
+                    } else {
+                        row = word.row + i;
+                        col = word.col;
+                    }
+                    const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                    if (input && input.value.trim() !== '') {
+                        hasValue = true;
+                        break;
+                    }
+                }
+                return hasValue;
+            }).length;
+
+            const score = attemptedWords > 0 ? Math.round((correctCount / attemptedWords) * 100) : 0;
             document.getElementById('score').textContent = `Skor: ${score}`;
 
             // Show wrong words if any
@@ -1598,8 +1750,8 @@
                 });
             }
 
-            // Show completion message if perfect score
-            if (score === 100) {
+            // Show completion message if perfect score with at least one attempt
+            if (score === 100 && attemptedWords > 0) {
                 document.getElementById('crossword-congratulations-popup').classList.add('active');
                 
                 // Fire confetti
