@@ -310,6 +310,143 @@
             cursor: pointer;
         }
 
+        /* Crossword Section Styling */
+        .crossword-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .crossword-section h2 {
+            color: #2c8a5c;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .clues-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .clues {
+            flex: 1;
+        }
+
+        .clues h3 {
+            color: #2c8a5c;
+            border-bottom: 2px solid #2c8a5c;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .clues ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .clues li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .clues li:before {
+            content: attr(data-number) ".";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #2c8a5c;
+        }
+
+        #crossword {
+            border-collapse: collapse;
+            margin: 0 auto 30px;
+        }
+
+        #crossword td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #crossword td.black {
+            background-color: #333;
+            border-color: #333;
+        }
+
+        #crossword input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: transparent;
+        }
+
+        #crossword input:focus {
+            outline: 2px solid #2c8a5c;
+            background-color: #e8f5e9;
+        }
+
+        #crossword sup {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 10px;
+            color: #2c8a5c;
+            font-weight: bold;
+        }
+
+        .crossword-button {
+            display: block;
+            margin: 0 auto;
+            background-color: #2c8a5c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .crossword-button:hover {
+            background-color: #237a4b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .score {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c8a5c;
+        }
+
+        .correct {
+            background-color: #e8f5e9;
+        }
+
+        .incorrect {
+            background-color: #ffebee;
+        }
+
         /* Popup Styling */
         .popup-overlay {
             position: fixed;
@@ -463,6 +600,48 @@
             color: #ecf0f1;
         }
 
+        body.dark-mode .crossword-section {
+            background-color: #2a2c30;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .clues h3 {
+            color: #58D68D;
+            border-bottom-color: #58D68D;
+        }
+
+        body.dark-mode .clues li:before {
+            color: #58D68D;
+        }
+
+        body.dark-mode #crossword td {
+            border-color: #444;
+        }
+
+        body.dark-mode #crossword input {
+            color: #ecf0f1;
+        }
+
+        body.dark-mode #crossword input:focus {
+            background-color: #3a3c40;
+        }
+
+        body.dark-mode #crossword sup {
+            color: #58D68D;
+        }
+
+        body.dark-mode .score {
+            color: #58D68D;
+        }
+
+        body.dark-mode .correct {
+            background-color: #1e3a1e;
+        }
+
+        body.dark-mode .incorrect {
+            background-color: #3a1e1e;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
@@ -523,6 +702,17 @@
             .mission-table input[type="checkbox"] {
                 transform: scale(1.2);
             }
+            .clues-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            #crossword td {
+                width: 30px;
+                height: 30px;
+            }
+            #crossword input {
+                font-size: 16px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -548,6 +738,16 @@
             }
             .mission-table input[type="checkbox"] {
                 transform: scale(1);
+            }
+            #crossword td {
+                width: 25px;
+                height: 25px;
+            }
+            #crossword input {
+                font-size: 14px;
+            }
+            #crossword sup {
+                font-size: 8px;
             }
         }
 
@@ -599,6 +799,9 @@
                 </button>
                 <button class="side-button" onclick="showMission()">
                     <span>Misi Mingguan</span>
+                </button>
+                <button class="side-button" onclick="showCrossword()">
+                    <span>Teka-Teki Silang</span>
                 </button>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfexample/viewform" class="side-button" target="_blank">
                     <span>Kuesioner Gaya Hidup</span>
@@ -672,6 +875,243 @@
         </section>
     </main>
 
+    <main class="content-page">
+        <section class="crossword-section">
+            <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
+            <div class="clues-container">
+                <div class="clues">
+                    <h3>Mendatar</h3>
+                    <ul>
+                        <li data-number="1">Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
+                        <li data-number="2">Rasio lingkar pinggang dan tinggi badan.</li>
+                        <li data-number="5">Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
+                        <li data-number="7">Pada saat apa tubuh memberikan sinyal untuk berhalti makan.</li>
+                        <li data-number="8">Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
+                    </ul>
+                </div>
+                <div class="clues">
+                    <h3>Menurun</h3>
+                    <ul>
+                        <li data-number="1">Contoh aktivitas fisik dengan level rendah.</li>
+                        <li data-number="3">Penyakit akibat tekanan darah tinggi.</li>
+                        <li data-number="4">Nama lemak sehat yang membantu manajemen berat badan.</li>
+                        <li data-number="5">Dampak obesitas pada mental.</li>
+                        <li data-number="6">Contoh aktivitas fisik dengan level tinggi.</li>
+                    </ul>
+                </div>
+            </div>
+            <table id="crossword">
+                <!-- Row 0 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>1</sup><input type="text" maxlength="1" data-row="0" data-col="2" data-across="1" data-down="1"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="3" data-across="1"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="4" data-across="1"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="5" data-across="1"></td>
+                    <td><input type="text" maxlength="1" data-row="0" data-col="6" data-across="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 1 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>2</sup><input type="text" maxlength="1" data-row="1" data-col="9" data-across="2"></td>
+                    <td><sup>3</sup><input type="text" maxlength="1" data-row="1" data-col="10" data-across="2" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="11" data-across="2"></td>
+                    <td><input type="text" maxlength="1" data-row="1" data-col="12" data-across="2"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="2" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="3" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td><sup>5</sup><input type="text" maxlength="1" data-row="4" data-col="0" data-across="5" data-down="5"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="1" data-across="5"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="2" data-across="5" data-down="1"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="3" data-across="5"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="4" data-across="5" data-down="4"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="5" data-across="5"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="6" data-across="5"></td>
+                    <td><sup>6</sup><input type="text" maxlength="1" data-row="4" data-col="7" data-across="5" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="4" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 5 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="4" data-down="4"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="5" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 6 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="6" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 7 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="2" data-down="1"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="7" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 8 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>7</sup><input type="text" maxlength="1" data-row="8" data-col="5" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="6" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="7" data-across="7" data-down="6"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="8" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="9" data-across="7"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="10" data-across="7" data-down="3"></td>
+                    <td><input type="text" maxlength="1" data-row="8" data-col="11" data-across="7"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 9 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="7" data-down="6"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><input type="text" maxlength="1" data-row="9" data-col="10" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 10 -->
+                <tr>
+                    <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td><sup>8</sup><input type="text" maxlength="1" data-row="10" data-col="8" data-across="8"></td>
+                    <td><input type="text" maxlength="1" data-row="10" data-col="9" data-across="8"></td>
+                    <td><input type="text" maxlength="1" data-row="10" data-col="10" data-across="8" data-down="3"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+                <!-- Row 11 -->
+                <tr>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                    <td class="black"></td>
+                </tr>
+            </table>
+            <button class="crossword-button" onclick="checkCrosswordAnswers()">Cek Jawaban</button>
+            <div class="score" id="score">Skor: 0</div>
+            <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
+        </section>
+    </main>
+
     <!-- Congratulations Popup -->
     <div class="popup-overlay" id="congratulations-popup">
         <div class="popup-content">
@@ -680,6 +1120,17 @@
             <p>Anda telah menyelesaikan semua misi mingguan ini! 🎉</p>
             <p>Terus pertahankan gaya hidup sehat Anda!</p>
             <button class="button" onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Crossword Congratulations Popup -->
+    <div class="popup-overlay" id="crossword-congratulations-popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closeCrosswordPopup()">&times;</span>
+            <h3>Selamat!</h3>
+            <p>Anda telah menyelesaikan teka-teki silang dengan sempurna! 🎉</p>
+            <p>Pengetahuan Anda tentang gaya hidup sehat sangat baik!</p>
+            <button class="button" onclick="closeCrosswordPopup()">Tutup</button>
         </div>
     </div>
 
@@ -709,6 +1160,7 @@
         const homePage = pages[0];
         const videoPage = pages[1];
         const missionPage = pages[2];
+        const crosswordPage = pages[3];
         const missionButton = document.getElementById('mission-button');
 
         // Function to hide all pages
@@ -746,6 +1198,11 @@
         // Mission button functionality
         function showMission() {
             showPage(missionPage);
+        }
+
+        // Crossword button functionality
+        function showCrossword() {
+            showPage(crosswordPage);
         }
 
         // Mission button functionality
@@ -792,14 +1249,14 @@
         // Show congratulations popup
         function showCongratulations() {
             popup.classList.add('active');
-            
+
             // Fire confetti
             confetti({
                 particleCount: 150,
                 spread: 70,
                 origin: { y: 0.6 }
             });
-            
+
             // Additional confetti bursts
             setTimeout(() => {
                 confetti({
@@ -808,7 +1265,7 @@
                     spread: 55,
                     origin: { x: 0 }
                 });
-                
+
                 confetti({
                     particleCount: 100,
                     angle: 120,
@@ -823,8 +1280,228 @@
             popup.classList.remove('active');
         }
 
+        // Close crossword popup
+        function closeCrosswordPopup() {
+            document.getElementById('crossword-congratulations-popup').classList.remove('active');
+        }
+
         // Check on page load if all missions are completed
         window.addEventListener('load', checkAllCompleted);
+
+        // Crossword Logic
+        const words = [
+            { type: 'across', number: 1, row: 0, col: 2, length: 5, answer: 'BUGAR' },
+            { type: 'across', number: 2, row: 1, col: 9, length: 4, answer: 'WHTR' },
+            { type: 'across', number: 5, row: 4, col: 0, length: 8, answer: 'DIABETES' },
+            { type: 'across', number: 7, row: 8, col: 5, length: 7, answer: 'KENYANG' },
+            { type: 'across', number: 8, row: 10, col: 8, length: 3, answer: 'BMI' },
+            { type: 'down', number: 1, row: 0, col: 2, length: 8, answer: 'BERJALAN' },
+            { type: 'down', number: 3, row: 1, col: 10, length: 10, answer: 'HIPERTENSI' },
+            { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
+            { type: 'down', number: 5, row: 4, col: 0, length: 7, answer: 'DEPRESI' },
+            { type: 'down', number: 6, row: 4, col: 7, length: 6, answer: 'SPRINT' }
+        ];
+
+        // Initialize crossword
+        document.addEventListener('DOMContentLoaded', function() {
+            // Focus first input when crossword page is shown
+            const crosswordInputs = document.querySelectorAll('#crossword input');
+            if (crosswordInputs.length > 0) {
+                crosswordInputs[0].focus();
+            }
+
+            // Auto-tab to next input when a letter is entered
+            crosswordInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        const nextInput = findNextInput(this);
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                });
+
+                // Allow navigation with arrow keys
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || 
+                        e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                        navigateWithArrows(this, e.key);
+                    }
+                });
+            });
+        });
+
+        // Find next input in crossword
+        function findNextInput(currentInput) {
+            const row = parseInt(currentInput.dataset.row);
+            const col = parseInt(currentInput.dataset.col);
+            const inputs = document.querySelectorAll('#crossword input');
+
+            // Try to find next input in row
+            for (let i = 0; i < inputs.length; i++) {
+                const inputRow = parseInt(inputs[i].dataset.row);
+                const inputCol = parseInt(inputs[i].dataset.col);
+
+                if (inputRow === row && inputCol === col + 1) {
+                    return inputs[i];
+                }
+            }
+
+            // If no next in row, find first input in next row
+            for (let i = 0; i < inputs.length; i++) {
+                const inputRow = parseInt(inputs[i].dataset.row);
+                const inputCol = parseInt(inputs[i].dataset.col);
+
+                if (inputRow === row + 1 && inputCol === 0) {
+                    return inputs[i];
+                }
+            }
+
+            return null;
+        }
+
+        // Navigate with arrow keys
+        function navigateWithArrows(currentInput, direction) {
+            const row = parseInt(currentInput.dataset.row);
+            const col = parseInt(currentInput.dataset.col);
+            const inputs = document.querySelectorAll('#crossword input');
+
+            let targetRow = row;
+            let targetCol = col;
+
+            switch (direction) {
+                case 'ArrowUp':
+                    targetRow = row - 1;
+                    break;
+                case 'ArrowDown':
+                    targetRow = row + 1;
+                    break;
+                case 'ArrowLeft':
+                    targetCol = col - 1;
+                    break;
+                case 'ArrowRight':
+                    targetCol = col + 1;
+                    break;
+            }
+
+            for (let i = 0; i < inputs.length; i++) {
+                const inputRow = parseInt(inputs[i].dataset.row);
+                const inputCol = parseInt(inputs[i].dataset.col);
+
+                if (inputRow === targetRow && inputCol === targetCol) {
+                    inputs[i].focus();
+                    break;
+                }
+            }
+        }
+
+        // Check crossword answers
+        function checkCrosswordAnswers() {
+            let correctCount = 0;
+            const totalWords = words.length;
+
+            // Reset all cell classes
+            document.querySelectorAll('#crossword input').forEach(input => {
+                input.classList.remove('correct', 'incorrect');
+            });
+
+            // Check each word
+            words.forEach(word => {
+                let userAnswer = '';
+
+                // Get user's answer for this word
+                for (let i = 0; i < word.length; i++) {
+                    let row, col;
+
+                    if (word.type === 'across') {
+                        row = word.row;
+                        col = word.col + i;
+                    } else {
+                        row = word.row + i;
+                        col = word.col;
+                    }
+
+                    const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                    if (input) {
+                        userAnswer += input.value.toUpperCase();
+                    }
+                }
+
+                // Compare with correct answer
+                if (userAnswer === word.answer) {
+                    correctCount++;
+
+                    // Mark correct cells
+                    for (let i = 0; i < word.length; i++) {
+                        let row, col;
+
+                        if (word.type === 'across') {
+                            row = word.row;
+                            col = word.col + i;
+                        } else {
+                            row = word.row + i;
+                            col = word.col;
+                        }
+
+                        const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                        if (input) {
+                            input.classList.add('correct');
+                        }
+                    }
+                } else {
+                    // Mark incorrect cells
+                    for (let i = 0; i < word.length; i++) {
+                        let row, col;
+
+                        if (word.type === 'across') {
+                            row = word.row;
+                            col = word.col + i;
+                        } else {
+                            row = word.row + i;
+                            col = word.col;
+                        }
+
+                        const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                        if (input) {
+                            input.classList.add('incorrect');
+                        }
+                    }
+                }
+            });
+
+            // Calculate and display score
+            const score = Math.round((correctCount / totalWords) * 100);
+            document.getElementById('score').textContent = `Skor: ${score}`;
+
+            // Show completion message if perfect score
+            if (score === 100) {
+                document.getElementById('crossword-congratulations-popup').classList.add('active');
+                
+                // Fire confetti
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                // Additional confetti bursts
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+
+                    confetti({
+                        particleCount: 100,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+                }, 500);
+            }
+        }
     </script>
 </body>
 </html>
