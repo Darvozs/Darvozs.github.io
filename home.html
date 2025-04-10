@@ -190,6 +190,33 @@
             background: linear-gradient(135deg, #2ecc71 0%, #4CAF50 100%);
         }
 
+        /* Back to Main Menu Button */
+        .back-button {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        }
+
         /* Video Section Styling */
         .video-section {
             margin-top: 40px;
@@ -439,7 +466,7 @@
             box-shadow: 0 0 15px rgba(255,255,255,0.05);
         }
 
-        body.dark-mode h1, body.dark-mode h2 {
+        body.dark-mode h1, body.d dark-mode h2 {
             color: #58D68D;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
@@ -465,14 +492,16 @@
 
         body.dark-mode #dark-mode-toggle,
         body.dark-mode .crossword-section button,
-        body.dark-mode .side-button {
+        body.dark-mode .side-button,
+        body.dark-mode .back-button {
             background-color: #58D68D;
             color: #1f2023;
         }
 
         body.dark-mode #dark-mode-toggle:hover,
         body.dark-mode .crossword-section button:hover,
-        body.dark-mode .side-button:hover {
+        body.dark-mode .side-button:hover,
+        body.dark-mode .back-button:hover {
             background-color: #2ecc71;
         }
 
@@ -671,7 +700,7 @@
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
             <button id="dark-mode-toggle" class="button">Dark Mode</button>
-            <button id="crossword-button" class="button">Crossword</button>
+            <button id="crossword-button", class="button">Crossword</button>
         </div>
     </header>
 
@@ -711,6 +740,7 @@
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+            <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
         </section>
     </main>
 
@@ -772,6 +802,7 @@
                     </tr>
                 </tbody>
             </table>
+            <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
         </section>
     </main>
 
@@ -830,7 +861,7 @@
                     <td class="black"></td>
                     <td class="black"></td>
                     <td><sup>2</sup><input type="text" maxlength="1" data-row="1" data-col="7" data-across="2"></td>
-                    <td><sup�3</sup><input type="text" maxlength="1" data-row="1" data-col="8" data-across="2" data-down="3"></td>
+                    <td><sup>3</sup><input type="text" maxlength="1" data-row="1" data-col="8" data-across="2" data-down="3"></td>
                     <td><input type="text" maxlength="1" data-row="1" data-col="10" data-across="2"></td>
                     <td><input type="text" maxlength="1" data-row="1" data-col="2" data-across="2"></td>
                     <td class="black"></td>
@@ -1008,6 +1039,7 @@
             </table>
             <button onclick="checkAnswers()">Cek Jawaban</button>
             <div class="score" id="score">Skor: 0</div>
+            <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
         </section>
     </main>
 
@@ -1054,12 +1086,17 @@
             window.scrollTo(0, 0);
         }
 
+        // Function to show home page
+        function showHome() {
+            showPage(homePage);
+            crosswordButton.textContent = 'Crossword';
+        }
+
         // Home button functionality (logo click)
         document.querySelector('.logo a').addEventListener('click', function(e) {
             if (!e.target.matches('img')) return;
             e.preventDefault();
-            showPage(homePage);
-            crosswordButton.textContent = 'Crossword';
+            showHome();
         });
 
         // Video button functionality
@@ -1075,8 +1112,7 @@
         // Crossword button functionality
         crosswordButton.addEventListener('click', function() {
             if (crosswordPage.classList.contains('active')) {
-                showPage(homePage);
-                crosswordButton.textContent = 'Crossword';
+                showHome();
             } else {
                 showPage(crosswordPage);
                 crosswordButton.textContent = 'Back to Book';
