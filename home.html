@@ -6,6 +6,7 @@
     <title>Buku Pintar BUGAR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* New font imports from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
@@ -447,6 +448,10 @@
             background-color: #ffebee;
         }
 
+        .wrong-word {
+            border: 2px solid #ff5252;
+        }
+
         /* Popup Styling */
         .popup-overlay {
             position: fixed;
@@ -642,6 +647,75 @@
             background-color: #3a1e1e;
         }
 
+        body.dark-mode .wrong-word {
+            border-color: #ff6b6b;
+        }
+
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background-color: #58D68D;
+            color: #1f2023;
+        }
+
+        /* Wrong Words List */
+        .wrong-words-list {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff3f3;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .wrong-words-list h4 {
+            color: #ff5252;
+            margin-bottom: 10px;
+        }
+
+        .wrong-words-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .wrong-words-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        body.dark-mode .wrong-words-list {
+            background-color: #3a1e1e;
+        }
+
+        body.dark-mode .wrong-words-list h4 {
+            color: #ff6b6b;
+        }
+
+        body.dark-mode .wrong-words-list li {
+            color: #bdc3c7;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
@@ -713,6 +787,12 @@
             #crossword input {
                 font-size: 16px;
             }
+            .dark-mode-toggle {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -773,8 +853,7 @@
             <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" class="button" target="_blank">BMI Calculator</a>
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
-            <button id="dark-mode-toggle" class="button">Dark Mode</button>
-            <button id="mission-button" class="button">Misi Mingguan</button>
+            <button id="back-to-book" class="button">Kembali ke Buku</button>
         </div>
     </header>
 
@@ -1081,7 +1160,7 @@
                     <td class="black"></td>
                     <td class="black"></td>
                     <td class="black"></td>
-                    <td><sup>8</sup><input type="text" maxlength="1" data-row="10" data-col="8" data-across="8"></td>
+                    <td><sup�8</sup><input type="text" maxlength="1" data-row="10" data-col="8" data-across="8"></td>
                     <td><input type="text" maxlength="1" data-row="10" data-col="9" data-across="8"></td>
                     <td><input type="text" maxlength="1" data-row="10" data-col="10" data-across="8" data-down="3"></td>
                     <td class="black"></td>
@@ -1108,6 +1187,10 @@
             </table>
             <button class="crossword-button" onclick="checkCrosswordAnswers()">Cek Jawaban</button>
             <div class="score" id="score">Skor: 0</div>
+            <div id="wrong-words" class="wrong-words-list" style="display: none;">
+                <h4>Kata-kata yang salah:</h4>
+                <ul id="wrong-words-list"></ul>
+            </div>
             <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
         </section>
     </main>
@@ -1134,6 +1217,11 @@
         </div>
     </div>
 
+    <!-- Dark Mode Toggle Button -->
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <footer>
         <p>© 2025 IPE-35. All rights reserved.</p>
     </footer>
@@ -1145,13 +1233,13 @@
 
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
-            darkModeToggle.textContent = 'Light Mode';
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
 
         darkModeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
             const isDarkMode = body.classList.contains('dark-mode');
-            darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
             localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
         });
 
@@ -1161,7 +1249,7 @@
         const videoPage = pages[1];
         const missionPage = pages[2];
         const crosswordPage = pages[3];
-        const missionButton = document.getElementById('mission-button');
+        const backToBookButton = document.getElementById('back-to-book');
 
         // Function to hide all pages
         function hideAllPages() {
@@ -1180,7 +1268,6 @@
         // Function to show home page
         function showHome() {
             showPage(homePage);
-            missionButton.textContent = 'Misi Mingguan';
         }
 
         // Home button functionality (logo click)
@@ -1205,14 +1292,9 @@
             showPage(crosswordPage);
         }
 
-        // Mission button functionality
-        missionButton.addEventListener('click', function() {
-            if (missionPage.classList.contains('active')) {
-                showHome();
-            } else {
-                showPage(missionPage);
-                missionButton.textContent = 'Kembali ke Buku';
-            }
+        // Back to book button functionality
+        backToBookButton.addEventListener('click', function() {
+            showHome();
         });
 
         // Mission Checkboxes
@@ -1399,11 +1481,18 @@
         function checkCrosswordAnswers() {
             let correctCount = 0;
             const totalWords = words.length;
+            const wrongWords = [];
+            const wrongWordsList = document.getElementById('wrong-words-list');
+            const wrongWordsContainer = document.getElementById('wrong-words');
 
             // Reset all cell classes
             document.querySelectorAll('#crossword input').forEach(input => {
-                input.classList.remove('correct', 'incorrect');
+                input.classList.remove('correct', 'incorrect', 'wrong-word');
             });
+
+            // Clear previous wrong words list
+            wrongWordsList.innerHTML = '';
+            wrongWordsContainer.style.display = 'none';
 
             // Check each word
             words.forEach(word => {
@@ -1449,6 +1538,14 @@
                         }
                     }
                 } else {
+                    // Add to wrong words list
+                    wrongWords.push({
+                        number: word.number,
+                        type: word.type,
+                        answer: word.answer,
+                        userAnswer: userAnswer
+                    });
+
                     // Mark incorrect cells
                     for (let i = 0; i < word.length; i++) {
                         let row, col;
@@ -1466,12 +1563,40 @@
                             input.classList.add('incorrect');
                         }
                     }
+
+                    // Highlight the entire wrong word
+                    for (let i = 0; i < word.length; i++) {
+                        let row, col;
+
+                        if (word.type === 'across') {
+                            row = word.row;
+                            col = word.col + i;
+                        } else {
+                            row = word.row + i;
+                            col = word.col;
+                        }
+
+                        const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
+                        if (input) {
+                            input.classList.add('wrong-word');
+                        }
+                    }
                 }
             });
 
             // Calculate and display score
             const score = Math.round((correctCount / totalWords) * 100);
             document.getElementById('score').textContent = `Skor: ${score}`;
+
+            // Show wrong words if any
+            if (wrongWords.length > 0) {
+                wrongWordsContainer.style.display = 'block';
+                wrongWords.forEach(word => {
+                    const li = document.createElement('li');
+                    li.textContent = `${word.type === 'across' ? 'Mendatar' : 'Menurun'} ${word.number}: Jawaban Anda "${word.userAnswer || '(kosong)'}", seharusnya "${word.answer}"`;
+                    wrongWordsList.appendChild(li);
+                });
+            }
 
             // Show completion message if perfect score
             if (score === 100) {
