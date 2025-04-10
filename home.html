@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buku Pintar BUGAR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* New font imports from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
+        
         /* Updated global typography */
         body {
             font-family: 'Poppins', sans-serif;
@@ -18,6 +20,7 @@
             color: #2c3e50;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
+        
         /* Basic CSS Reset */
         * {
             margin: 0;
@@ -262,6 +265,106 @@
             color: #4CAF50;
         }
 
+        /* Video Section Styling */
+        .video-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Table Section Styling */
+        .table-section {
+            margin-top: 40px;
+        }
+
+        .table-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        .nutrition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nutrition-table th, .nutrition-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nutrition-table th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        .nutrition-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .nutrition-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Questionnaire Section Styling */
+        .questionnaire-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .questionnaire-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .questionnaire-container {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .questionnaire-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 5px;
+        }
+
         /* Footer Styling */
         footer {
             background-color: #f0f0f0;
@@ -319,6 +422,9 @@
 
         body.dark-mode #dark-mode-toggle,
         body.dark-mode #crossword-button,
+        body.dark-mode #video-button,
+        body.dark-mode #table-button,
+        body.dark-mode #questionnaire-button,
         body.dark-mode .crossword-section button {
             background-color: #58D68D;
             color: #1f2023;
@@ -326,6 +432,9 @@
 
         body.dark-mode #dark-mode-toggle:hover,
         body.dark-mode #crossword-button:hover,
+        body.dark-mode #video-button:hover,
+        body.dark-mode #table-button:hover,
+        body.dark-mode #questionnaire-button:hover,
         body.dark-mode .crossword-section button:hover {
             background-color: #2ecc71;
         }
@@ -366,6 +475,27 @@
 
         body.dark-mode .score {
             color: #58D68D;
+        }
+
+        body.dark-mode .nutrition-table th {
+            background-color: #58D68D;
+        }
+
+        body.dark-mode .nutrition-table tr:nth-child(even) {
+            background-color: #2a2c30;
+        }
+
+        body.dark-mode .nutrition-table tr:hover {
+            background-color: #3a3c40;
+        }
+
+        body.dark-mode .nutrition-table td {
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .questionnaire-container {
+            background-color: #2a2c30;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         /* Responsive Design */
@@ -427,6 +557,10 @@
             .clues {
                 max-width: 90%;
             }
+            .nutrition-table th, .nutrition-table td {
+                padding: 8px 10px;
+                font-size: 0.85em;
+            }
         }
 
         @media (max-width: 480px) {
@@ -457,6 +591,9 @@
                 padding: 10px 20px;
                 font-size: 1em;
             }
+            .nutrition-table {
+                font-size: 0.8em;
+            }
         }
 
         /* Page Navigation */
@@ -482,6 +619,9 @@
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
             <button id="dark-mode-toggle" class="button">Dark Mode</button>
+            <button id="video-button" class="button">Video</button>
+            <button id="table-button" class="button">Nutrition Table</button>
+            <button id="questionnaire-button" class="button">Questionnaire</button>
             <button id="crossword-button" class="button">Crossword</button>
         </div>
     </header>
@@ -500,6 +640,87 @@
                     allowfullscreen="true">
             </iframe>
         </div>
+    </main>
+
+    <main class="content-page">
+        <section class="video-section">
+            <h2>Video Edukasi Kesehatan</h2>
+            <p>Simak video berikut untuk memahami lebih dalam tentang gaya hidup sehat dan pencegahan obesitas.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <main class="content-page">
+        <section class="table-section">
+            <h2>Tabel Nutrisi Harian</h2>
+            <p>Berikut adalah rekomendasi asupan nutrisi harian untuk menjaga kesehatan tubuh:</p>
+            <table class="nutrition-table">
+                <thead>
+                    <tr>
+                        <th>Nutrisi</th>
+                        <th>Kebutuhan Harian</th>
+                        <th>Sumber Makanan</th>
+                        <th>Manfaat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Protein</td>
+                        <td>46-56 gram</td>
+                        <td>Daging, telur, kacang-kacangan</td>
+                        <td>Pembangun otot dan jaringan</td>
+                    </tr>
+                    <tr>
+                        <td>Karbohidrat</td>
+                        <td>225-325 gram</td>
+                        <td>Biji-bijian, buah, sayuran</td>
+                        <td>Sumber energi utama</td>
+                    </tr>
+                    <tr>
+                        <td>Lemak</td>
+                        <td>44-78 gram</td>
+                        <td>Alpukat, minyak zaitun, ikan</td>
+                        <td>Penyerapan vitamin, energi</td>
+                    </tr>
+                    <tr>
+                        <td>Serat</td>
+                        <td>25-30 gram</td>
+                        <td>Buah, sayur, gandum utuh</td>
+                        <td>Pencernaan sehat</td>
+                    </tr>
+                    <tr>
+                        <td>Vitamin C</td>
+                        <td>75-90 mg</td>
+                        <td>Jeruk, stroberi, paprika</td>
+                        <td>Kekebalan tubuh</td>
+                    </tr>
+                    <tr>
+                        <td>Kalsium</td>
+                        <td>1000-1200 mg</td>
+                        <td>Susu, keju, yogurt</td>
+                        <td>Tulang dan gigi kuat</td>
+                    </tr>
+                    <tr>
+                        <td>Zat Besi</td>
+                        <td>8-18 mg</td>
+                        <td>Daging merah, bayam, kacang</td>
+                        <td>Produksi sel darah merah</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <main class="content-page">
+        <section class="questionnaire-section">
+            <h2>Kuesioner Gaya Hidup Sehat</h2>
+            <p>Isi kuesioner berikut untuk mengevaluasi gaya hidup sehat Anda:</p>
+            <div class="questionnaire-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfexample/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Memuat...</iframe>
+            </div>
+        </section>
     </main>
 
     <main class="content-page">
@@ -760,23 +981,100 @@
         });
 
         // Page Navigation
-        const crosswordButton = document.getElementById('crossword-button');
         const pages = document.querySelectorAll('.content-page');
         const homePage = pages[0];
-        const crosswordPage = pages[1];
+        const videoPage = pages[1];
+        const tablePage = pages[2];
+        const questionnairePage = pages[3];
+        const crosswordPage = pages[4];
+        
+        // Get all navigation buttons
+        const videoButton = document.getElementById('video-button');
+        const tableButton = document.getElementById('table-button');
+        const questionnaireButton = document.getElementById('questionnaire-button');
+        const crosswordButton = document.getElementById('crossword-button');
+
+        // Function to hide all pages
+        function hideAllPages() {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+        }
+
+        // Function to show a specific page
+        function showPage(page) {
+            hideAllPages();
+            page.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Home button functionality (logo click)
+        document.querySelector('.logo a').addEventListener('click', function(e) {
+            if (!e.target.matches('img')) return;
+            e.preventDefault();
+            showPage(homePage);
+            // Reset button texts
+            videoButton.textContent = 'Video';
+            tableButton.textContent = 'Nutrition Table';
+            questionnaireButton.textContent = 'Questionnaire';
+            crosswordButton.textContent = 'Crossword';
+        });
+
+        // Navigation button event listeners
+        videoButton.addEventListener('click', function() {
+            if (videoPage.classList.contains('active')) {
+                showPage(homePage);
+                videoButton.textContent = 'Video';
+            } else {
+                showPage(videoPage);
+                videoButton.textContent = 'Back to Book';
+                // Reset other buttons
+                tableButton.textContent = 'Nutrition Table';
+                questionnaireButton.textContent = 'Questionnaire';
+                crosswordButton.textContent = 'Crossword';
+            }
+        });
+
+        tableButton.addEventListener('click', function() {
+            if (tablePage.classList.contains('active')) {
+                showPage(homePage);
+                tableButton.textContent = 'Nutrition Table';
+            } else {
+                showPage(tablePage);
+                tableButton.textContent = 'Back to Book';
+                // Reset other buttons
+                videoButton.textContent = 'Video';
+                questionnaireButton.textContent = 'Questionnaire';
+                crosswordButton.textContent = 'Crossword';
+            }
+        });
+
+        questionnaireButton.addEventListener('click', function() {
+            if (questionnairePage.classList.contains('active')) {
+                showPage(homePage);
+                questionnaireButton.textContent = 'Questionnaire';
+            } else {
+                showPage(questionnairePage);
+                questionnaireButton.textContent = 'Back to Book';
+                // Reset other buttons
+                videoButton.textContent = 'Video';
+                tableButton.textContent = 'Nutrition Table';
+                crosswordButton.textContent = 'Crossword';
+            }
+        });
 
         crosswordButton.addEventListener('click', function() {
-            const isCrosswordActive = crosswordPage.classList.contains('active');
-            if (isCrosswordActive) {
-                crosswordPage.classList.remove('active');
-                homePage.classList.add('active');
+            if (crosswordPage.classList.contains('active')) {
+                showPage(homePage);
                 crosswordButton.textContent = 'Crossword';
             } else {
-                homePage.classList.remove('active');
-                crosswordPage.classList.add('active');
+                showPage(crosswordPage);
                 crosswordButton.textContent = 'Back to Book';
+                // Reset other buttons
+                videoButton.textContent = 'Video';
+                tableButton.textContent = 'Nutrition Table';
+                questionnaireButton.textContent = 'Questionnaire';
             }
-            window.scrollTo(0, 0);
         });
 
         // Crossword Logic
