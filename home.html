@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
+    <header>
+  <div class="logo">
+    <!-- Your logo here -->
+  </div>
+  <div class="buttons">
+    <a href="#" class="button">BMI Calculator</a>
+    <a href="#" class="button">Body Weight Planner</a>
+    <a href="#" class="button">Calorie Content List</a>
+    
+    <!-- New Button -->
+    <button id="activity-table-btn" class="button">Activity Table</button>
+    
+    <button id="dark-mode-toggle" class="button">Dark Mode</button>
+  </div>
+</header>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buku Pintar BUGAR</title>
     <style>
+  /* Table styling */
+  #activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  #activity-table th {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 15px;
+    text-align: left;
+  }
+
+  #activity-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+
+  #activity-table tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* Responsive table */
+  @media (max-width: 768px) {
+    #activity-table {
+      font-size: 0.9em;
+    }
+    
+    #activity-table th,
+    #activity-table td {
+      padding: 10px;
+    }
+  }
+</style>
         /* New font imports from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
         /* Updated global typography */
@@ -501,7 +554,49 @@
             </iframe>
         </div>
     </main>
-
+      <!-- New Table Section -->
+  <section class="content" id="activity-table-page">
+    <h2>Rencana Aktivitas Fisik Mingguan</h2>
+    <table id="activity-table">
+      <thead>
+        <tr>
+          <th>Hari</th>
+          <th>Aktivitas Fisik</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Senin</td>
+          <td>Jalan cepat 30 menit</td>
+        </tr>
+        <tr>
+          <td>Selasa</td>
+          <td>Senam ringan 20 menit + peregangan</td>
+        </tr>
+        <tr>
+          <td>Rabu</td>
+          <td>Bersepeda 45 menit</td>
+        </tr>
+        <tr>
+          <td>Kamis</td>
+          <td>Yoga 30 menit</td>
+        </tr>
+        <tr>
+          <td>Jumat</td>
+          <td>Renang 45 menit</td>
+        </tr>
+        <tr>
+          <td>Sabtu</td>
+          <td>Jogging 30 menit + latihan kekuatan</td>
+        </tr>
+        <tr>
+          <td>Minggu</td>
+          <td>Hiking/olahraga outdoor 60 menit</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
     <main class="content-page">
         <section class="crossword-section">
             <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
@@ -758,7 +853,24 @@
             darkModeToggle.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
             localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
         });
-
+        
+        <script>
+  // Add to your existing script
+  document.getElementById('activity-table-btn').addEventListener('click', () => {
+    const homePage = document.getElementById('home-page');
+    const activityPage = document.getElementById('activity-table-page');
+    
+    if (activityPage.classList.contains('active')) {
+      activityPage.classList.remove('active');
+      homePage.classList.add('active');
+      this.textContent = 'Activity Table';
+    } else {
+      homePage.classList.remove('active');
+      activityPage.classList.add('active');
+      this.textContent = 'Back to Home';
+    }
+  });
+</script>
         // Page Navigation
         const crosswordButton = document.getElementById('crossword-button');
         const pages = document.querySelectorAll('.content-page');
