@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buku Pintar BUGAR</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         /* New font imports from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap');
@@ -248,32 +249,32 @@
             border: none;
         }
 
-        /* Table Section Styling */
-        .table-section {
+        /* Mission Table Styling */
+        .mission-section {
             margin-top: 40px;
         }
 
-        .table-section h2 {
+        .mission-section h2 {
             font-size: 2em;
             margin-bottom: 20px;
             color: #4CAF50;
             text-align: center;
         }
 
-        .nutrition-table {
+        .mission-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .nutrition-table th, .nutrition-table td {
+        .mission-table th, .mission-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
-        .nutrition-table th {
+        .mission-table th {
             background-color: #4CAF50;
             color: white;
             font-weight: 600;
@@ -282,171 +283,88 @@
             letter-spacing: 0.5px;
         }
 
-        .nutrition-table tr:nth-child(even) {
+        .mission-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
 
-        .nutrition-table tr:hover {
+        .mission-table tr:hover {
             background-color: #f1f1f1;
         }
 
-        /* Questionnaire Section Styling */
-        .questionnaire-section {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .questionnaire-section h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #4CAF50;
-        }
-
-        .questionnaire-container {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-
-        .questionnaire-container iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        /* Crossword Styling */
-        .crossword-section {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .crossword-section h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #4CAF50;
-        }
-
-        .clues-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            text-align: left;
-            gap: 20px;
-        }
-
-        .clues {
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .clues h3 {
-            margin-bottom: 10px;
-            color: #2ecc71;
-        }
-
-        .clues ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .clues li {
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            line-height: 1.4;
-        }
-
-        table#crossword {
-            border-collapse: collapse;
-            margin: 20px auto;
-            border: 2px solid #555;
-        }
-
-        #crossword td {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ccc;
-            vertical-align: middle;
-            position: relative;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        #crossword sup {
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            font-size: 8px;
-            line-height: 1;
-            color: #555;
-            pointer-events: none;
-        }
-
-        #crossword input[type="text"] {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
+        .mission-table .day {
             font-weight: 600;
-            text-transform: uppercase;
-            border: none;
-            padding: 0;
-            background-color: transparent;
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #2c3e50;
         }
 
-        #crossword input[type="text"]:focus {
-            outline: 2px solid #4CAF50;
-            outline-offset: -2px;
-            background-color: rgba(76, 175, 80, 0.1);
+        .mission-table .task {
+            width: 60%;
         }
 
-        #crossword .black {
-            background-color: #333;
-            border-color: #333;
-        }
-
-        .crossword-section button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Roboto Condensed', sans-serif;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-        }
-
-        .crossword-section button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-        }
-
-        .score {
-            font-size: 18px;
-            margin-top: 20px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        /* Footer Styling */
-        footer {
-            background-color: #f0f0f0;
+        .mission-table .status {
             text-align: center;
-            padding: 15px;
-            margin-top: 40px;
+            width: 20%;
+        }
+
+        .mission-table input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+
+        /* Popup Styling */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             bottom: 0;
-            width: 100%;
-            font-size: 0.9em;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .popup-content h3 {
+            font-size: 2em;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .popup-content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
             color: #777;
-            border-top: 1px solid #ddd;
-            transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: #333;
         }
 
         /* Dark Mode Styling */
@@ -466,16 +384,12 @@
             box-shadow: 0 0 15px rgba(255,255,255,0.05);
         }
 
-        body.dark-mode h1, body.d dark-mode h2 {
+        body.dark-mode h1, body.dark-mode h2 {
             color: #58D68D;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        body.dark-mode .clues h3 {
-            color: #2ecc71;
-        }
-
-        body.dark-mode p, body.dark-mode .clues li {
+        body.dark-mode p {
             color: #bdc3c7;
         }
 
@@ -511,57 +425,42 @@
             border-top-color: #444;
         }
 
-        body.dark-mode #crossword .black {
-            background-color: #1a1a1a;
-            border-color: #1a1a1a;
-        }
-
-        body.dark-mode #crossword td {
-            border-color: #555;
-        }
-
-        body.dark-mode #crossword sup {
-            color: #aaa;
-        }
-
-        body.dark-mode #crossword input[type="text"] {
-            background-color: transparent;
-            color: #ecf0f1;
-        }
-
-        body.dark-mode #crossword input[type="text"]:focus {
-            outline-color: #58D68D;
-            background-color: rgba(88, 214, 141, 0.15);
-        }
-
-        body.dark-mode .fliphtml5-container-wrapper {
-            border-color: #555;
-            background-color: #2a2c30;
-        }
-
-        body.dark-mode .score {
-            color: #58D68D;
-        }
-
-        body.dark-mode .nutrition-table th {
+        body.dark-mode .mission-table th {
             background-color: #58D68D;
         }
 
-        body.dark-mode .nutrition-table tr:nth-child(even) {
+        body.dark-mode .mission-table tr:nth-child(even) {
             background-color: #2a2c30;
         }
 
-        body.dark-mode .nutrition-table tr:hover {
+        body.dark-mode .mission-table tr:hover {
             background-color: #3a3c40;
         }
 
-        body.dark-mode .nutrition-table td {
+        body.dark-mode .mission-table td {
             border-bottom-color: #444;
+            color: #ecf0f1;
         }
 
-        body.dark-mode .questionnaire-container {
+        body.dark-mode .mission-table .day {
+            color: #58D68D;
+        }
+
+        body.dark-mode .popup-content {
             background-color: #2a2c30;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .popup-content h3 {
+            color: #58D68D;
+        }
+
+        body.dark-mode .popup-close {
+            color: #bdc3c7;
+        }
+
+        body.dark-mode .popup-close:hover {
+            color: #ecf0f1;
         }
 
         /* Responsive Design */
@@ -618,26 +517,11 @@
             .side-button {
                 width: calc(50% - 10px);
             }
-            #crossword td {
-                width: 28px;
-                height: 28px;
+            .mission-table .task {
+                width: 50%;
             }
-            #crossword input[type="text"] {
-                font-size: 12px;
-            }
-            #crossword sup {
-                font-size: 7px;
-            }
-            .clues-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .clues {
-                max-width: 90%;
-            }
-            .nutrition-table th, .nutrition-table td {
-                padding: 8px 10px;
-                font-size: 0.85em;
+            .mission-table input[type="checkbox"] {
+                transform: scale(1.2);
             }
         }
 
@@ -655,25 +539,15 @@
             .side-button {
                 width: 100%;
             }
-            #crossword td {
-                width: 24px;
-                height: 24px;
+            .mission-table th, .mission-table td {
+                padding: 8px 10px;
+                font-size: 0.85em;
             }
-            #crossword input[type="text"] {
-                font-size: 11px;
+            .mission-table .task {
+                width: 60%;
             }
-            #crossword sup {
-                font-size: 6px;
-            }
-            .clues {
-                font-size: 0.9em;
-            }
-            .crossword-section button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
-            .nutrition-table {
-                font-size: 0.8em;
+            .mission-table input[type="checkbox"] {
+                transform: scale(1);
             }
         }
 
@@ -700,7 +574,7 @@
             <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
             <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
             <button id="dark-mode-toggle" class="button">Dark Mode</button>
-            <button id="crossword-button", class="button">Crossword</button>
+            <button id="mission-button" class="button">Misi Mingguan</button>
         </div>
     </header>
 
@@ -723,8 +597,8 @@
                 <button class="side-button" onclick="showVideo()">
                     <span>Video Edukasi</span>
                 </button>
-                <button class="side-button" onclick="showTable()">
-                    <span>Tabel Nutrisi</span>
+                <button class="side-button" onclick="showMission()">
+                    <span>Misi Mingguan</span>
                 </button>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfexample/viewform" class="side-button" target="_blank">
                     <span>Kuesioner Gaya Hidup</span>
@@ -745,60 +619,52 @@
     </main>
 
     <main class="content-page">
-        <section class="table-section">
-            <h2>Tabel Nutrisi Harian</h2>
-            <p>Berikut adalah rekomendasi asupan nutrisi harian untuk menjaga kesehatan tubuh:</p>
-            <table class="nutrition-table">
+        <section class="mission-section">
+            <h2>Misi Mingguan Sehat</h2>
+            <p>Selesaikan semua misi di bawah ini untuk mencapai gaya hidup yang lebih sehat!</p>
+            <table class="mission-table">
                 <thead>
                     <tr>
-                        <th>Nutrisi</th>
-                        <th>Kebutuhan Harian</th>
-                        <th>Sumber Makanan</th>
-                        <th>Manfaat</th>
+                        <th>Hari</th>
+                        <th class="task">Misi</th>
+                        <th class="status">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Protein</td>
-                        <td>46-56 gram</td>
-                        <td>Daging, telur, kacang-kacangan</td>
-                        <td>Pembangun otot dan jaringan</td>
+                        <td class="day">Senin</td>
+                        <td class="task">Jalan cepat selama 30 menit</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="monday"></td>
                     </tr>
                     <tr>
-                        <td>Karbohidrat</td>
-                        <td>225-325 gram</td>
-                        <td>Biji-bijian, buah, sayuran</td>
-                        <td>Sumber energi utama</td>
+                        <td class="day">Selasa</td>
+                        <td class="task">Senam ringan 20 menit + peregangan</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="tuesday"></td>
                     </tr>
                     <tr>
-                        <td>Lemak</td>
-                        <td>44-78 gram</td>
-                        <td>Alpukat, minyak zaitun, ikan</td>
-                        <td>Penyerapan vitamin, energi</td>
+                        <td class="day">Rabu</td>
+                        <td class="task">Naik turun tangga selama 15 menit</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="wednesday"></td>
                     </tr>
                     <tr>
-                        <td>Serat</td>
-                        <td>25-30 gram</td>
-                        <td>Buah, sayur, gandum utuh</td>
-                        <td>Pencernaan sehat</td>
+                        <td class="day">Kamis</td>
+                        <td class="task">Bersepeda selama 30 menit</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="thursday"></td>
                     </tr>
                     <tr>
-                        <td>Vitamin C</td>
-                        <td>75-90 mg</td>
-                        <td>Jeruk, stroberi, paprika</td>
-                        <td>Kekebalan tubuh</td>
+                        <td class="day">Jumat</td>
+                        <td class="task">Jalan santai 20 menit + meditasi</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="friday"></td>
                     </tr>
                     <tr>
-                        <td>Kalsium</td>
-                        <td>1000-1200 mg</td>
-                        <td>Susu, keju, yogurt</td>
-                        <td>Tulang dan gigi kuat</td>
+                        <td class="day">Sabtu</td>
+                        <td class="task">Aktivitas fisik bersama keluarga</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="saturday"></td>
                     </tr>
                     <tr>
-                        <td>Zat Besi</td>
-                        <td>8-18 mg</td>
-                        <td>Daming merah, bayam, kacang</td>
-                        <td>Produksi sel darah merah</td>
+                        <td class="day">Minggu</td>
+                        <td class="task">Stretching & yoga 30 menit</td>
+                        <td class="status"><input type="checkbox" class="mission-checkbox" data-day="sunday"></td>
                     </tr>
                 </tbody>
             </table>
@@ -806,242 +672,16 @@
         </section>
     </main>
 
-    <main class="content-page">
-        <section class="crossword-section">
-            <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
-            <div class="clues-container">
-                <div class="clues">
-                    <h3>Mendatar</h3>
-                    <ul>
-                        <li>1. Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
-                        <li>2. Rasio lingkar pinggang dan tinggi badan.</li>
-                        <li>5. Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
-                        <li>7. Pada saat apa tubuh memberikan sinyal untuk berhenti makan.</li>
-                        <li>8. Alot ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
-                    </ul>
-                </div>
-                <div class="clues">
-                    <h3>Menurun</h3>
-                    <ul>
-                        <li>1. Contoh aktivitas fisik dengan level rendah.</li>
-                        <li>3. Penyakit akibat tekanan darah tinggi.</li>
-                        <li>4. Nama lemak sehat yang membantu manajemen berat badan.</li>
-                        <li>5. Dampak obesitas pada mental.</li>
-                        <li>6. Contoh aktivitas fisik dengan level tinggi.</li>
-                    </ul>
-                </div>
-            </div>
-            <table id="crossword">
-                <!-- Row 0 -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><sup>1</sup><input type="text" maxlength="1" data-row="0" data-col="2" data-across="1" data-down="1"></td>
-                    <td><input type="text" maxlength="1" data-row="0" data-col="3" data-across="1"></td>
-                    <td><input type="text" maxlength="1" data-row="0" data-col="4" data-across="1"></td>
-                    <td><input type="text" maxlength="1" data-row="0" data-col="5" data-across="1"></td>
-                    <td><input type="text" maxlength="1" data-row="0" data-col="6" data-across="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 1 -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="1" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><sup>2</sup><input type="text" maxlength="1" data-row="1" data-col="7" data-across="2"></td>
-                    <td><sup>3</sup><input type="text" maxlength="1" data-row="1" data-col="8" data-across="2" data-down="3"></td>
-                    <td><input type="text" maxlength="1" data-row="1" data-col="10" data-across="2"></td>
-                    <td><input type="text" maxlength="1" data-row="1" data-col="2" data-across="2"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 2 -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="2" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 3 -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="3" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 4 -->
-                <tr>
-                    <td><sup>5</sup><input type="text" maxlength="1" data-row="4" data-col="0" data-across="5" data-down="5"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="1" data-across="5"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="2" data-across="5" data-down="1"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="3" data-across="5"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="4" data-across="5" data-down="4"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="5" data-across="5"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="6" data-across="5"></td>
-                    <td><sup>6</sup><input type="text" maxlength="1" data-row="4" data-col="7" data-across="5" data-down="6"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="4" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 5 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="5" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="5" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="5" data-col="4" data-down="4"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="5" data-col="7" data-down="6"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="5" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 6 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="6" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="6"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="6" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 7 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="7" data-col="2" data-down="1"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="7" data-col="7" data-down="6"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="7" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 8 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><sup>7</sup><input type="text" maxlength="1" data-row="8" data-col="3" data-across="7"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="4" data-across="7"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="5" data-across="7"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="6" data-across="7"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="7" data-across="7" data-down="6"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="8" data-across="7" data-down="3"></td>
-                    <td><input type="text" maxlength="1" data-row="8" data-col="9" data-across="7"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 9 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="9" data-col="7" data-down="6"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><input type="text" maxlength="1" data-row="9" data-col="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 10 -->
-                <tr>
-                    <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td><sup>8</sup><input type="text" maxlength="1" data-row="10" data-col="6" data-across="8"></td>
-                    <td><input type="text" maxlength="1" data-row="10" data-col="7" data-across="8"></td>
-                    <td><input type="text" maxlength="1" data-row="10" data-col="8" data-across="8" data-down="3"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-                <!-- Row 11 -->
-                <tr>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                    <td class="black"></td>
-                </tr>
-            </table>
-            <button onclick="checkAnswers()">Cek Jawaban</button>
-            <div class="score" id="score">Skor: 0</div>
-            <button class="back-button" onclick="showHome()">Kembali ke Menu Utama</button>
-        </section>
-    </main>
+    <!-- Congratulations Popup -->
+    <div class="popup-overlay" id="congratulations-popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <h3>Selamat!</h3>
+            <p>Anda telah menyelesaikan semua misi mingguan ini! 🎉</p>
+            <p>Terus pertahankan gaya hidup sehat Anda!</p>
+            <button class="button" onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
 
     <footer>
         <p>© 2025 IPE-35. All rights reserved.</p>
@@ -1068,9 +708,8 @@
         const pages = document.querySelectorAll('.content-page');
         const homePage = pages[0];
         const videoPage = pages[1];
-        const tablePage = pages[2];
-        const crosswordPage = pages[3];
-        const crosswordButton = document.getElementById('crossword-button');
+        const missionPage = pages[2];
+        const missionButton = document.getElementById('mission-button');
 
         // Function to hide all pages
         function hideAllPages() {
@@ -1089,7 +728,7 @@
         // Function to show home page
         function showHome() {
             showPage(homePage);
-            crosswordButton.textContent = 'Crossword';
+            missionButton.textContent = 'Misi Mingguan';
         }
 
         // Home button functionality (logo click)
@@ -1104,63 +743,88 @@
             showPage(videoPage);
         }
 
-        // Table button functionality
-        function showTable() {
-            showPage(tablePage);
+        // Mission button functionality
+        function showMission() {
+            showPage(missionPage);
         }
 
-        // Crossword button functionality
-        crosswordButton.addEventListener('click', function() {
-            if (crosswordPage.classList.contains('active')) {
+        // Mission button functionality
+        missionButton.addEventListener('click', function() {
+            if (missionPage.classList.contains('active')) {
                 showHome();
             } else {
-                showPage(crosswordPage);
-                crosswordButton.textContent = 'Back to Book';
+                showPage(missionPage);
+                missionButton.textContent = 'Kembali ke Buku';
             }
         });
 
-        // Crossword Logic
-        const words = [
-            { type: 'across', number: 1, row: 0, col: 2, length: 5, answer: 'BUGAR' },
-            { type: 'across', number: 2, row: 1, col: 7, length: 4, answer: 'WHTR' },
-            { type: 'across', number: 5, row: 4, col: 0, length: 8, answer: 'DIABETES' },
-            { type: 'across', number: 7, row: 8, col: 3, length: 7, answer: 'KENYANG' },
-            { type: 'across', number: 8, row: 10, col: 6, length: 3, answer: 'BMI' },
-            { type: 'down', number: 1, row: 0, col: 2, length: 8, answer: 'BERJALAN' },
-            { type: 'down', number: 3, row: 1, col: 8, length: 10, answer: 'HIPERTENSI' },
-            { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
-            { type: 'down', number: 5, row: 4, col: 0, length: 7, answer: 'DEPRESI' },
-            { type: 'down', number: 6, row: 4, col: 7, length: 6, answer: 'SPRINT' }
-        ];
+        // Mission Checkboxes
+        const checkboxes = document.querySelectorAll('.mission-checkbox');
+        const popup = document.getElementById('congratulations-popup');
 
-        function checkAnswers() {
-            let score = 0;
-            words.forEach(word => {
-                let userAnswer = '';
-                if (word.type === 'across') {
-                    for (let i = 0; i < word.length; i++) {
-                        const input = document.querySelector(`input[data-row="${word.row}"][data-col="${word.col + i}"]`);
-                        userAnswer += input ? input.value.toUpperCase() : '';
-                    }
+        // Load saved checkboxes from localStorage
+        checkboxes.forEach(checkbox => {
+            const day = checkbox.getAttribute('data-day');
+            if (localStorage.getItem(`mission-${day}`) === 'completed') {
+                checkbox.checked = true;
+            }
+            
+            checkbox.addEventListener('change', function() {
+                const day = this.getAttribute('data-day');
+                if (this.checked) {
+                    localStorage.setItem(`mission-${day}`, 'completed');
                 } else {
-                    for (let i = 0; i < word.length; i++) {
-                        const input = document.querySelector(`input[data-row="${word.row + i}"][data-col="${word.col}"]`);
-                        userAnswer += input ? input.value.toUpperCase() : '';
-                    }
+                    localStorage.removeItem(`mission-${day}`);
                 }
-                if (userAnswer === word.answer) {
-                    score += 10;
-                }
+                
+                checkAllCompleted();
             });
-            document.getElementById('score').textContent = `Skor: ${score}`;
-            if (score === words.length * 10) {
-                alert('Selamat! Semua jawaban benar!');
-            } else if (score > 0) {
-                alert('Beberapa jawaban benar. Coba lagi untuk menyempurnakan!');
-            } else {
-                alert('Jawaban belum ada yang benar. Periksa kembali petunjuknya!');
+        });
+
+        // Check if all missions are completed
+        function checkAllCompleted() {
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            if (allChecked) {
+                showCongratulations();
             }
         }
+
+        // Show congratulations popup
+        function showCongratulations() {
+            popup.classList.add('active');
+            
+            // Fire confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            
+            // Additional confetti bursts
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                
+                confetti({
+                    particleCount: 100,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+            }, 500);
+        }
+
+        // Close popup
+        function closePopup() {
+            popup.classList.remove('active');
+        }
+
+        // Check on page load if all missions are completed
+        window.addEventListener('load', checkAllCompleted);
     </script>
 </body>
 </html>
