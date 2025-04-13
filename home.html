@@ -22,7 +22,7 @@
 
         h1, h2 {
             font-family: 'Space Grotesk', sans-serif;
-            color: #1e293b;
+            color: #7e6bc4;
             font-weight: 600;
         }
         
@@ -31,6 +31,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* Color Palette Pastel untuk Remaja */
+        :root {
+            --pastel-blue: #a5c8ff;
+            --pastel-cyan: #a5f8ff;
+            --pastel-pink: #ffb5d0;
+            --pastel-yellow: #fff1a5;
+            --pastel-green: #b7ffb5;
+            --pastel-purple: #d9b5ff;
+            --pastel-orange: #ffd5a5;
+            --pastel-mint: #c7f9cc;
+            --dark-text: #4a4a4a;
         }
 
         /* Header Styling */
@@ -42,7 +55,7 @@
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: background-color 0.3s ease;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .buttons {
@@ -54,11 +67,11 @@
         .button {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--pastel-cyan) 0%, var(--pastel-blue) 100%);
+            color: var(--dark-text);
             padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: none;
             letter-spacing: normal;
@@ -72,8 +85,8 @@
 
         .button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-purple) 100%);
         }
 
         .logo img {
@@ -111,14 +124,14 @@
         h1 {
             font-size: 2.4em;
             margin-bottom: 20px;
-            color: #3b82f6;
+            color: #7e6bc4;
             transition: color 0.3s ease;
         }
 
         h2 {
             font-size: 1.8em;
             margin-bottom: 15px;
-            color: #3b82f6;
+            color: #7e6bc4;
             transition: color 0.3s ease;
         }
 
@@ -170,8 +183,8 @@
         .side-button {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pastel-purple) 100%);
+            color: var(--dark-text);
             padding: 16px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -192,15 +205,15 @@
         .side-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, var(--pastel-purple) 0%, var(--pastel-pink) 100%);
         }
 
         /* Back to Main Menu Button */
         .back-button {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--pastel-yellow) 0%, var(--pastel-orange) 100%);
+            color: var(--dark-text);
             padding: 12px 24px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -219,7 +232,7 @@
         .back-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+            background: linear-gradient(135deg, var(--pastel-orange) 0%, var(--pastel-yellow) 100%);
         }
 
         /* Video Section Styling */
@@ -231,7 +244,7 @@
         .video-section h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #3b82f6;
+            color: #7e6bc4;
         }
 
         .video-container {
@@ -262,7 +275,7 @@
         .mission-section h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #3b82f6;
+            color: #7e6bc4;
             text-align: center;
         }
 
@@ -283,8 +296,8 @@
         }
 
         .mission-table th {
-            background-color: #3b82f6;
-            color: white;
+            background-color: var(--pastel-blue);
+            color: var(--dark-text);
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.9em;
@@ -348,8 +361,8 @@
         }
 
         .clues h3 {
-            color: #3b82f6;
-            border-bottom: 2px solid #3b82f6;
+            color: #7e6bc4;
+            border-bottom: 2px solid var(--pastel-purple);
             padding-bottom: 8px;
             margin-bottom: 15px;
             font-size: 20px;
@@ -372,7 +385,7 @@
         }
 
         .clues li:hover {
-            color: #3b82f6;
+            color: #ff8fb1;
         }
 
         #crossword {
@@ -421,8 +434,8 @@
         }
 
         #crossword input:focus {
-            outline: 2px solid #3b82f6;
-            background-color: #eff6ff;
+            outline: 2px solid var(--pastel-pink);
+            background-color: #fff9f9;
         }
 
         #crossword sup {
@@ -431,7 +444,7 @@
             left: 3px;
             font-size: 10px;
             font-weight: 700;
-            color: #3b82f6;
+            color: #ff8fb1;
             line-height: 1;
             z-index: 2;
             background: rgba(255, 255, 255, 0.85);
@@ -443,8 +456,8 @@
         .crossword-button {
             display: block;
             margin: 25px auto 15px;
-            background-color: #3b82f6;
-            color: white;
+            background: linear-gradient(135deg, var(--pastel-green) 0%, var(--pastel-cyan) 100%);
+            color: var(--dark-text);
             border: none;
             padding: 14px 28px;
             border-radius: 10px;
@@ -456,7 +469,7 @@
         }
 
         .crossword-button:hover {
-            background-color: #2563eb;
+            background: linear-gradient(135deg, var(--pastel-cyan) 0%, var(--pastel-green) 100%);
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         }
@@ -466,15 +479,15 @@
             margin-top: 20px;
             font-size: 18px;
             font-weight: 600;
-            color: #3b82f6;
+            color: #7e6bc4;
         }
 
         .correct {
-            background-color: #ecfdf5;
+            background-color: var(--pastel-mint);
         }
 
         .incorrect {
-            background-color: #fef2f2;
+            background-color: #fff0f0;
         }
 
         .wrong-word {
@@ -534,7 +547,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #3b82f6;
+            background: linear-gradient(135deg, var(--pastel-purple) 0%, var(--pastel-pink) 100%);
             color: white;
             display: flex;
             justify-content: center;
@@ -587,13 +600,13 @@
 
         /* Crossword cursor styles */
         .active-across {
-            background-color: #eff6ff !important;
-            border-color: #93c5fd !important;
+            background-color: #fff9f9 !important;
+            border-color: var(--pastel-pink) !important;
         }
 
         .active-down {
-            background-color: #ecfdf5 !important;
-            border-color: #6ee7b7 !important;
+            background-color: #f9fff9 !important;
+            border-color: var(--pastel-green) !important;
         }
 
         /* Footer */
@@ -608,24 +621,24 @@
 
         /* Dark Mode Styles */
         body.dark-mode {
-            background-color: #0f172a;
+            background-color: #2d2a3e;
             color: #e2e8f0;
         }
 
         body.dark-mode header {
-            background-color: #1e293b;
+            background-color: #352f47;
             border-bottom-color: #334155;
         }
 
         body.dark-mode main {
-            background-color: #1e293b;
+            background-color: #352f47;
             border-color: #334155;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         body.dark-mode h1, 
         body.dark-mode h2 {
-            color: #60a5fa;
+            color: var(--pastel-purple);
         }
 
         body.dark-mode p {
@@ -633,11 +646,11 @@
         }
 
         body.dark-mode .button {
-            background: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+            background: linear-gradient(135deg, #8bcdff 0%, #c2a8ff 100%);
         }
 
         body.dark-mode .button:hover {
-            background: linear-gradient(135deg, #818cf8 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, #c2a8ff 0%, #8bcdff 100%);
         }
 
         body.dark-mode .fliphtml5-container-wrapper {
@@ -646,11 +659,11 @@
         }
 
         body.dark-mode .side-button {
-            background: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+            background: linear-gradient(135deg, #ff9ec3 0%, #c2a8ff 100%);
         }
 
         body.dark-mode .side-button:hover {
-            background: linear-gradient(135deg, #818cf8 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, #c2a8ff 0%, #ff9ec3 100%);
         }
 
         body.dark-mode .back-button {
@@ -666,7 +679,7 @@
         }
 
         body.dark-mode .mission-table th {
-            background-color: #60a5fa;
+            background-color: #8bcdff;
         }
 
         body.dark-mode .mission-table tr:nth-child(even) {
@@ -691,7 +704,7 @@
         }
 
         body.dark-mode .crossword-section {
-            background-color: #1e293b;
+            background-color: #352f47;
             border-color: #334155;
         }
 
@@ -705,12 +718,12 @@
         }
 
         body.dark-mode #crossword {
-            background-color: #273548;
+            background-color: #413958;
             border-color: #475569;
         }
 
         body.dark-mode #crossword td {
-            background-color: #334155;
+            background-color: #413958;
             border-color: #475569;
         }
 
@@ -733,11 +746,11 @@
         }
 
         body.dark-mode .correct {
-            background-color: #1a4531;
+            background-color: #3a4d3a;
         }
 
         body.dark-mode .incorrect {
-            background-color: #3a1e1e;
+            background-color: #4d3a3a;
         }
 
         body.dark-mode .wrong-word {
@@ -754,7 +767,7 @@
         }
 
         body.dark-mode .popup-content {
-            background-color: #1e293b;
+            background-color: #352f47;
             border-color: #334155;
         }
 
@@ -776,7 +789,7 @@
         }
 
         body.dark-mode .dark-mode-toggle {
-            background-color: #60a5fa;
+            background: linear-gradient(135deg, var(--pastel-purple) 0%, var(--pastel-pink) 100%);
         }
 
         /* Responsive Design */
