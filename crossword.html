@@ -1,0 +1,242 @@
+<section class="crossword-section">
+    <h2>Crossword: Seberapa Sehat Gaya Hidupmu?</h2>
+    <div class="clues-container">
+        <div class="clues">
+            <h3>Mendatar</h3>
+            <ul>
+                <!-- Note: onclick handlers now call functions defined in script.js -->
+                <li data-number="1" onclick="highlightWord(1, 'across')">Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
+                <li data-number="2" onclick="highlightWord(2, 'across')">Rasio lingkar pinggang dan tinggi badan.</li>
+                <li data-number="5" onclick="highlightWord(5, 'across')">Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
+                <li data-number="7" onclick="highlightWord(7, 'across')">Pada saat apa tubuh memberikan sinyal untuk berhalti makan.</li>
+                <li data-number="8" onclick="highlightWord(8, 'across')">Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
+            </ul>
+        </div>
+        <div class="clues">
+            <h3>Menurun</h3>
+            <ul>
+                <!-- Note: onclick handlers now call functions defined in script.js -->
+                <li data-number="1" onclick="highlightWord(1, 'down')">Contoh aktivitas fisik dengan level rendah.</li>
+                <li data-number="3" onclick="highlightWord(3, 'down')">Penyakit akibat tekanan darah tinggi.</li>
+                <li data-number="4" onclick="highlightWord(4, 'down')">Nama lemak sehat yang membantu manajemen berat badan.</li>
+                <li data-number="5" onclick="highlightWord(5, 'down')">Dampak obesitas pada mental.</li>
+                <li data-number="6" onclick="highlightWord(6, 'down')">Contoh aktivitas fisik dengan level tinggi.</li>
+            </ul>
+        </div>
+    </div>
+    <table id="crossword">
+         <!-- Row 0 -->
+         <tr>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><sup>1</sup><input type="text" maxlength="1" data-row="0" data-col="2" data-across="1" data-down="1"></td>
+            <td><input type="text" maxlength="1" data-row="0" data-col="3" data-across="1"></td>
+            <td><input type="text" maxlength="1" data-row="0" data-col="4" data-across="1"></td>
+            <td><input type="text" maxlength="1" data-row="0" data-col="5" data-across="1"></td>
+            <td><input type="text" maxlength="1" data-row="0" data-col="6" data-across="1"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 1 -->
+        <tr>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="1" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><sup>2</sup><input type="text" maxlength="1" data-row="1" data-col="9" data-across="2"></td>
+            <td><sup>3</sup><input type="text" maxlength="1" data-row="1" data-col="10" data-across="2" data-down="3"></td>
+            <td><input type="text" maxlength="1" data-row="1" data-col="11" data-across="2"></td>
+            <td><input type="text" maxlength="1" data-row="1" data-col="12" data-across="2"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 2 -->
+        <tr>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="2" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td><sup>4</sup><input type="text" maxlength="1" data-row="2" data-col="4" data-down="4"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="2" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 3 -->
+        <tr>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="3" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="3" data-col="4" data-down="4"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="3" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 4 -->
+        <tr>
+            <td><sup>5</sup><input type="text" maxlength="1" data-row="4" data-col="0" data-across="5" data-down="5"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="1" data-across="5"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="2" data-across="5" data-down="1"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="3" data-across="5"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="4" data-across="5" data-down="4"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="5" data-across="5"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="6" data-across="5"></td>
+            <td><sup>6</sup><input type="text" maxlength="1" data-row="4" data-col="7" data-across="5" data-down="6"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="4" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 5 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="5" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="5" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="5" data-col="4" data-down="4"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="5" data-col="7" data-down="6"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="5" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 6 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="6" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="6" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="6" data-col="4" data-down="4"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="6" data-col="7" data-down="6"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="6" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 7 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="7" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="7" data-col="2" data-down="1"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="7" data-col="7" data-down="6"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="7" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 8 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="8" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><sup>7</sup><input type="text" maxlength="1" data-row="8" data-col="5" data-across="7"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="6" data-across="7"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="7" data-across="7" data-down="6"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="8" data-across="7"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="9" data-across="7"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="10" data-across="7" data-down="3"></td>
+            <td><input type="text" maxlength="1" data-row="8" data-col="11" data-across="7"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 9 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="9" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="9" data-col="7" data-down="6"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><input type="text" maxlength="1" data-row="9" data-col="10" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 10 -->
+        <tr>
+            <td><input type="text" maxlength="1" data-row="10" data-col="0" data-down="5"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td><sup>8</sup><input type="text" maxlength="1" data-row="10" data-col="8" data-across="8"></td>
+            <td><input type="text" maxlength="1" data-row="10" data-col="9" data-across="8"></td>
+            <td><input type="text" maxlength="1" data-row="10" data-col="10" data-across="8" data-down="3"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+        <!-- Row 11 -->
+        <tr>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+            <td class="black"></td>
+        </tr>
+    </table>
+    <!-- Note: onclick handler calls function defined in script.js -->
+    <button class="crossword-button" onclick="checkCrosswordAnswers()">Cek Jawaban</button>
+    <div class="score" id="score">Skor: 0</div>
+    <div id="wrong-words" class="wrong-words-list" style="display: none;">
+        <h4>Kata-kata yang salah:</h4>
+        <ul id="wrong-words-list"></ul>
+    </div>
+    <!-- Note: onclick handler calls function defined in script.js -->
+    <button class="back-button" onclick="loadHomePage()">Kembali ke Menu Utama</button>
+</section>

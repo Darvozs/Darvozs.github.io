@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Pintar BUGAR</title>
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Note: Tailwind isn't heavily used, could be removed if desired -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Keep the link external or modify JS to handle internal navigation -->
+            <a href="https://pkmbhaktijaya.depok.go.id" target="_blank">
+                <img src="Screenshot_2025-04-10_103028-removebg-preview.png" alt="UPTD Puskesmas Baktijaya Logo - Green hexagon with cross and purple text">
+            </a>
+        </div>
+        <div class="buttons">
+            <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" class="button" target="_blank">BMI Calculator</a>
+            <a href="https://www.niddk.nih.gov/bwp" class="button" target="_blank">Body Weight Planner</a>
+            <a href="https://www.nutrition.va.gov/docs/UpdatedPatientEd/CalorieContentFoodList2018.pdf" class="button" target="_blank">Calorie Content List</a>
+            <!-- This button's functionality is now handled by JS -->
+            <button id="back-to-book" class="button">Menu Utama</button>
+        </div>
+    </header>
+
+    <!-- Main content area where pages will be loaded -->
+    <main id="main-content">
+        <!-- Content will be loaded here by JavaScript -->
+    </main>
+
+    <!-- Popups (remain in the main structure) -->
+    <div class="popup-overlay" id="congratulations-popup">
+        <div class="popup-content">
+            <span class="popup-close">×</span>
+            <h3>Selamat!</h3>
+            <p>Anda telah menyelesaikan semua misi mingguan ini! 🎉</p>
+            <p>Terus pertahankan gaya hidup sehat Anda!</p>
+            <!-- Reusing button style, onclick handled by JS if needed or close button is enough -->
+            <button class="button popup-close-button" onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+
+    <div class="popup-overflow" id="crossword-congratulations-popup">
+        <div class="popup-content">
+            <span class="popup-close">×</span>
+            <h3>Selamat!</h3>
+            <p>Anda telah menyelesaikan teka-teki silang dengan sempurna! 🎉</p>
+            <p>Pengetahuan Anda tentang gaya hidup sehat sangat baik!</p>
+             <!-- Reusing button style, onclick handled by JS if needed or close button is enough -->
+            <button class="button popup-close-button" onclick="closeCrosswordPopup()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle Button (remains in the main structure) -->
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <footer>
+        <p>© 2025 IPE-35. All rights reserved.</p>
+    </footer>
+
+    <!-- Custom JavaScript (defer ensures HTML is parsed first) -->
+    <script src="script.js" defer></script>
+</body>
+</html>
