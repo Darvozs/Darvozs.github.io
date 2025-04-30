@@ -951,7 +951,7 @@
                 <a href="https://bit.ly/UjiCobaIPE35" class="side-button" target="_blank">
                     <span>Kuesioner Gaya Hidup</span>
                 </a>
-                <a href="https://online.fliphtml5.com/zgmzq/duom/" class="side-button" target="_blank">
+                <a href="https://raw.githubusercontent.com/your-username/your-repo/main/BUGAR%20(1)_compressed.pdf" class="side-button" download>
                     <span>Download Buku Pintar</span>
                 </a>
             </div>
@@ -1033,7 +1033,7 @@
                         <li data-number="1" onclick="highlightWord(1, 'across')">Kondisi tubuh yang sehat, kuat, dan siap melakukan aktivitas fisik tanpa kelelahan berlebihan.</li>
                         <li data-number="2" onclick="highlightWord(2, 'across')">Rasio lingkar pinggang dan tinggi badan.</li>
                         <li data-number="5" onclick="highlightWord(5, 'across')">Penyakit tidak menular yang terkait dengan kadar gula darah tinggi.</li>
-                        <li data-number="7" onclick="highlightWord(7, 'across')">Pada saat apa tubuh memberikan sinyal untuk berhalti makan.</li>
+                        <li data-number="7" onclick="highlightWord(7, 'across')">Pada saat apa tubuh memberikan sinyal untuk berhenti makan.</li>
                         <li data-number="8" onclick="highlightWord(8, 'across')">Alat ukur risiko obesitas yang membandingkan berat dan tinggi badan.</li>
                     </ul>
                 </div>
@@ -1447,7 +1447,7 @@
             { type: 'down', number: 1, row: 0, col: 2, length: 8, answer: 'BERJALAN' },
             { type: 'down', number: 3, row: 1, col: 10, length: 10, answer: 'HIPERTENSI' },
             { type: 'down', number: 4, row: 2, col: 4, length: 5, answer: 'OMEGA' },
-            { type: 'down', number: 5, row: 4, col: 0, length: 7, answer: 'DEPRESI' },
+            { type: "down", number: 5, row: 4, col: 0, length: 7, answer: 'DEPRESI' },
             { type: 'down', number: 6, row: 4, col: 7, length: 6, answer: 'SPRINT' }
         ];
 
@@ -1753,6 +1753,7 @@
                             col = word.col + i;
                         } else {
                             row = word.row + i;
+                            col = word.col;
                         }
 
                         const input = document.querySelector(`#crossword input[data-row="${row}"][data-col="${col}"]`);
